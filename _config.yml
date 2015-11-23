@@ -4,7 +4,7 @@
 
 # Site
 title: Marchen's Blog
-subtitle: Become a good Front Engineer
+subtitle: Becoming a good Front Engineer
 description: About FE about life
 author: Marchen
 language: zh-CN
@@ -69,4 +69,4 @@ theme: hueman
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://chen844033231:c844033231@github.com/chen844033231/blog.git
+  repo: https://github.com/chen844033231/blog.git
