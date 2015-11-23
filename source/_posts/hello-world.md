@@ -9,7 +9,7 @@ Welcome to [Hexo](http://hexo.io/)! This is your very first post. Check [documen
 ``` bash
 $ hexo new "My New Post"
 ```
-
+!(a)[sdgsdg.html]
 More info: [Writing](http://hexo.io/docs/writing.html)
 
 ### Run server

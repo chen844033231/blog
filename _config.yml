@@ -8,7 +8,7 @@ subtitle: Become a good Front Engineer
 description: About FE about life
 author: Marchen
 language: zh-CN
-timezone: China
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -68,4 +68,5 @@ theme: hueman
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://chen844033231:c844033231@github.com/chen844033231/blog.git
