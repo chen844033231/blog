@@ -13,7 +13,7 @@ timezone:
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://marchen.com
-root: /public
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -70,3 +70,4 @@ theme: hueman
 deploy:
   type: git
   repo: https://chen844033231:c844033231@github.com/chen844033231/blog.git
+  branch: master
