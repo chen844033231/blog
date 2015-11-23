@@ -3,4 +3,4 @@ date: {{ date }}
 categories:
 tags:
 ---
-![/blog/resources/images/hello.jpg](/blog/resources/images/hello.jpg)
+![/blog/css/images/hello.jpg](/blog/css/images/hello.jpg)
