@@ -75,7 +75,6 @@ tags:
 // 可以看下location对象的属性.
 // 假设url是:http://www.baidu.com:3000/app/dashboard/?name=marchen#index/name
 我们采用console.log(location),输出如下结果:
-```js
 {
   ancestorOrigins: DOMStringList,  // 不清楚什么作用
   assign: function(){},  // 加载一个新的文档,这是不改变url加载新文档的方法
