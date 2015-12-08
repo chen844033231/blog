@@ -207,3 +207,13 @@ ExtractTextPlugin插件可以单独把css文件提取出来.因为在用css-load
 可以采用borowerSycn结合webpack-hot-middleware和webpack-dev-middleware来开发.热替换,流刷新,同步操作都有了.
 
 目前这样一套开发流程我已经开源在github,欢迎star:[react-workflow](https://github.com/chen844033231/react-workflow)
+
+## 后记
+webpack遇到的几个坑,一个是ExtractTextPlugin提取css的时候,由于设置了提取相同的插件,会提取出common.js.但是如果css没有相同的,就不会产生common.css.从而给后面的html文件替换hash路径添加了困难.还有在使用`fs-extra`的copy的时候,filter是一次过滤路径和文件.如果写
+```js
+var filter = function(path){
+  return path.spilt('.').pop() === '.html'
+}
+fs.copy('a','b', filter)
+```
+就不能复制下面的目录了,因为目录没有建立,从而得不到文件,需要写成!==来过滤或者过滤文件夹.
