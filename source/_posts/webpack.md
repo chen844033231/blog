@@ -217,3 +217,10 @@ var filter = function(path){
 fs.copy('a','b', filter)
 ```
 就不能复制下面的目录了,因为目录没有建立,从而得不到文件,需要写成!==来过滤或者过滤文件夹.
+
+----------------------------------------------------------------------------------------------------------
+2015-12-9日更新
+# webpack做静态缓存
+上面说到webpack可以把打包后的文件名加上`hash`或者`chunkhash`.如果你只有一个进入点,那个在index.html需要动态替换`script`标签和`link`标签.以前我用的是webpack的一个插件来得到编译后的stat,是一个json文件.然后读取json文件和index.htlm文件,替换响应的script路径.
+
+现在采用更加友好的方式.用`html-webpack-plugin`来动态产生index.html文件.这个会自动根据webpack的打包情况加上`link`和`script`标签.而且`hash`或者`chunkhash`后的文件也可以加上去.加上可以引用模板.十分的方便.从而丢弃手动去改变script的src属性的方法.
