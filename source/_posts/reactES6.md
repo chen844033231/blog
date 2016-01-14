@@ -164,7 +164,7 @@ class Hello extends Component {
 
 不过好消息是可以采用箭头函数来定义组件的方法,因为箭头函数会自动绑定this(实际上babel转化成es5代码而已).就能不用手动绑定那么麻烦啦.
 ```js
-// ES6自动绑定this
+// ES6自动绑定this (!!!!!!!!经测试,没卵用,会报this错误.知道的同学请告知我下)
 class Hello extends Component {
   // 注意这里的写法
 	greet = () => {
