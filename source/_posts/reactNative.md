@@ -7,213 +7,166 @@ tags:
 - react-native
 - 安卓
 ---
-![](/blog/css/images/webpack.jpg)
+![](/blog/css/images/reactNative.png)
 
 ## 前言
-最近几天在做关于webpack的项目.在使用过程中,遇到了遇到问题,不过一一解决了,我打算把这篇文章写出webpack的手册.等到自己下次还需要使用webpack的时候,能及时的参看这里的终结.
+facebook开源的react-native可以采用javascript技术来开发安卓和ios原生应用,但是在开发之前,许多新同学都被搭建环境,运行起第一个hello world程序给拦住了,导致后面的步骤没法进行,笔者看了下目前react-natvie在windows上搭建安卓开发环境的文章,没有写的十分详细,所以打算写一篇详细的文章,来带领初学者在windows上搭建一个react-native的教程.
 
-## 什么是webpack
-webpack是一个打包工具,可以把文件合并在一起.不过相比于其他的打包工具,webpack可以处理静态资源,比如图片,音频,`css`,`less`,`sass`这样的文件.在webpack的世界里面,所有的都是可以被引用的.这样的好处是什么呢?我觉得主要有下面的几个好处:
-1. 模块化开发(这里主要指js文件模块化开发,当然`css`可以模块化,参看[css-modules](https://github.com/css-modules/css-modules)).
-2. 打包不只是单单合并文件,还可以用loader来处理文件,也就是能把`ES6`编译成`ES5`,把`less`,`sass`之类的编译成`css`.而且`css`还可以通过`autoprefixer`来处理兼容性问题.
-3. 在处理静态文件,比如图片,html文件的时候,可以采用`url-loader`和`file-loader`来让图片进行`hash`处理,比较有用的一个是,还可以根据图片的大小来把图片进行base64处理.
-4. code spilting可以在需要代码的时候动态加载.
-5. 在发布的时候,还可以用插件来压缩js,压缩css等处理.
-6. 开发的时候,可以用热替换模块,让开发根据方便.
+## 准备工作
+(重要提示:推荐全程翻墙,或者采用vpn,不然可能会有未知问题).如果没有VPN,推荐一个免费的[1小时免费vpn](http://free.vpn.wwdhz.com/).
 
-## 如何使用
-首先,webpack是用javascript写的,可以在nodejs上运行,所以要使用webpack,需要安装[nodejs](https://nodejs.org/en/),在安装完后,安装webpack:
+下面的教程基于目前最新版react-native(0.18.0-rc)来搭建.react-native是对安卓的原生代码进行了封装,所以,如果要想在windows上运行安卓程序,需要安装java环境.在安装了java环境后,需要安装android sdk.当这些都安装好后,就可以安装react-native相关东西了.下面一步步进行安装讲解:
+### 1. 下载java环境(JDK).
+进入[JDK下载](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+![](/blog/css/images/reactNative/jdk.png)
+
+下载相应系统的jdk.下面演示采用64位的windows. 下载后安装,记住时安装目录.默认安装到(C:\Program Files\java),后面需要加入环境变量.
+
+### 2. 添加java路径到环境变量.
+在桌面上,找到的计算机图标,右击-属性-高级系统设置-环境变量-系统变量里面找到Path,然后把java路径加入到path路径中.确定后退出.
+例如我下载后java安装到了`C:\Program Files\Java`,然后把`C:\Program Files\Java\jdk1.8.0_65\bin`加入到path路径.
+进入命令提示符.输入 `javac`.如果输出一大串用法提示. 就代表jdk安装成功.可以继续后面的步骤了.如果没有,那么需要重新安装JDK.检测下是否忘记把jdk加入环境变量.
+![](/blog/css/images/reactNative/javac.png)
+
+### 3. 下载安装android SDK.
+如果你以前没有安装过android SDK,最简单的方法是到android官方下载[android studio](https://developer.android.com/sdk/index.html).这个是android官方推荐的编辑器,里面包含了开发安卓的工具和sdk包.到这里下载[android studio](https://developer.android.com/sdk/index.html). (需要翻墙). 如果没有翻墙工具,国内用户可以到[android dev tools](http://androiddevtools.cn/)下载android studio. 作为演示用android studio1.5.1正式版.(这个只是编辑器,不包含 sdk).推荐直接下载全部的android studio.
+
+### 4. 设置SDK
+打开Android SDK Manager.(在安装的sdk目录下有个SDK Manager.exe,双击运行).
+选中以下项目：
+Android SDK Build-tools version 23.0.1
+Android 6.0 (API 23)
+Android Support Repository
+点击"Install Packages" (国内用户推荐使用腾讯Bugly的镜像来加速下载)
+![](/blog/css/images/reactNative/sdk.png)
+
+### 5. 模拟器安装
+安装Genymotion,Genymotion是一个第三方模拟器，它比Google官方的模拟器更易设置且性能更好。但是，它只针对个人用户免费。如果你想使用Google模拟器，请往下看。
+
+- 下载并安装[Genymotion](https://www.genymotion.com/),进入官方下载页面.(注意看下面有个If you want Genymotion for personal use only, please download it here,个人免费版本).
+- 打开Genymotion。如果你尚未安装VirtualBox，它有可能会提示你安装。
+- 创建一个模拟器并启动。(下载模拟器需要翻墙)
+- 按下⌘+M可以打开开发者菜单（在安装并启动了React Native应用之后）。
+
+###### 备选方案：使用Google官方模拟器 (不推荐,笔者没成功)
+打开Android SDK Manager(参见"设置SDK"一步)
+
+选中以下项目：
+- Intel x86 Atom System Image (for Android 5.1.1 - API 22)
+- Intel x86 Emulator Accelerator (HAXM installer)
+
+点击"Install Packages"
+配置硬件加速(HAXM)，否则模拟器会运行的相当缓慢。
+创建Android虚拟设备(AVD):
+运行android avd并且点击Create... （译注：在Windows系统下，android.bat在Android SDK的tools文件夹下，请注意设置PATH环境变量以便于使用） 创建虚拟设备对话框
+选中新创建的虚拟设备，并点击Start...
+
+注意:对于Windows用户而言，Intel x86 Emulator Accelerator和HyperV（系统内置的虚拟机功能）不能同时启用。所以要么选择关闭HyperV（控制面板-程序-启动和关闭Windows功能，取消选择HyperV并点确定），要么选择Genymotion或Bluestacks作为模拟器
+
+### 6.安装react-native
+当在把`jdk`和`android sdk`安装好后,进行react-native的安装.在终端输入(需要用管理员权限运行命令提示符):
 ```shell
-$ npm install webpack -g
+npm install -g react-native-cli
 ```
-注意: 在windows系统上全局安装可能需要你用管理员身份打开命令行工具,其他平台可能需要你授予权限.
+react-native-cli是一个终端命令，它可以完成其余的设置工作。它可以通过npm安装。刚才这条命令会往你的终端安装一个叫做`react-native`的命令。这个安装过程你只需要进行一次。
 
-
-上面的是全局安装webpack,安装后,在命令行输入:
+然后找到需要建立项目的文件夹,在这个路径下运行:
 ```shell
-$ webpack
-webpack 1.12.9
-Usage: https://webpack.github.io/docs/cli.html
-
-Options:
-  --help, -h, -?
-  ...
+react-native init MyFirstProject
 ```
-出现上面的,就代表你安装成功了.
+这个命令会初始化一个工程、下载React Native的所有源代码和依赖包，最后在MyFirstProject/iOS/MyFirstProject.xcodeproj和MyFirstProject/android/app下分别创建一个新的XCode工程和一个gradle工程.
 
-不过推荐采用本地安装模式,这样可以防止版本冲突.本地安装方式:
+注意: 上面的步骤将会从npm下载依赖包,如果npm源下载比较慢,可以换成淘宝的源,然后重新运行命令:
 ```shell
-$ npm install webpack --save-dev
-```
-安装成功后,我们新建立2个文件就叫index.js和hello.js
-```js
-// index.js
-const hello = require('./hello.js')
-console.log(hello)
-```
-```js
-// hello.js
-module.exports = 'hello world'
-```
-我们可以看到,我们采用了commonjs的写法,这样的代码本来只能在像nodejs这样的解析器上运行,要让他在浏览器端运行,就需要通过打包工具来处理,比如webpack.
-
-我们采用nodejs的方式来调用webpack.新建一个文件,webpack.js最简单的配置方式:
-```js
-// webpack.js
-const webpack = require('webpack')  //需要node版本5.0.0
-
-webpack({
-  entry: './index.js',
-  output: {
-    path: './',
-    filename: 'bundle.js'
-  }
-}, function(err){
-  if(err) {
-    throw err
-  }
-  console.log('bundle successed!')
-})
+npm config set registry https://registry.npm.taobao.org
+npm config set disturl https://npm.taobao.org/dist
 ```
 
-我们在运行webpack.js文件.
+### 6.运行项目
+首先确认是否有可以使用的设备,可以通过在命令行输入`adb devices`,查看可用的设备.(adb命令需要把android的sdk/platform-tools加入环境变量.)
 ```shell
-$ node webpack.js
+$ adb devices
+List of devices attached
+emulator-5554 offline   # Google模拟器
+14ed2fcc device         # 真实设备
 ```
-会发现同级目录下多出了bundle.js文件.这个就是我们打包成功的文件.可以运行bundle.js这个文件,看看是不是输出'hello world'字样.
+在右边那列看到device说明你的设备已经被正确连接了。注意，你只应当连接仅仅一个设备。
 
-来点复杂一点的配置,让webpack可以监视文件改变,自动打包:
-```js
-// webpack
-const webpack = require('webpack')
+注意:如果你连接了多个设备（包含模拟器在内），后续的一些操作可能会失败。拔掉不需要的设备，或者关掉模拟器，确保adb devices的输出只有一个是连接状态。
 
-const bundler = webpack({
-  entry: './index.js',
-  output: {
-    path: './',
-    filename: 'bundle.js',
-  },
-  profile: true,
-})
+现在你可以运行`react-native start`和`react-native run-android`来在设备上安装并启动应用了。
 
-bundler.watch({
-    aggregateTimeout: 300,  // 文件改变延迟编译时间
-    poll: false  // 文件改变重新编译,设置成true或者数字会根据时间间隔轮询文件变化.单位ms.true是系统自动决定间隔时间
-}, function(){
-  console.log('bundle successed!')
-})
+注意:在真机上运行时可能会遇到白屏的情况，请找到并开启悬浮窗权限。比如miui系统的设置[在此处](http://jingyan.baidu.com/article/f25ef25466c0fc482d1b824d.html)。
+
+### 7.运行hello world项目
+在项目文件路径下输入命令:
+```shell
+react-natvie start
+```
+这个命令会运行一个packager进程,来打包react-native程序.然后在打开一个新的命令提示符窗口.在项目文件路径下输入:
+```shell
+react-natvie run-android
 ```
 
-## loader的使用
-webpack原生支持commonjs.ADM,ES6等模块化语法,如果我们想让webpack处理比如`less`,`ES6`这样的语法的时候,就需要用到loader,所谓的loader(本质是一个函数)就是webpack会在处理文件的时候,调用这个函数.就能编译`less`,`sass`,`ES6`这样的语法了.推荐几个常用的loader:
-### babel-loader
-能把ES6语法编译成ES5语法,最新的babel6需要在.bablerc配置下需要编译什么样的语法.
+等待模拟设备上弹出hello-world.
 
-### url-loader file-loader
-url-loader可以把小图片变成base64位的字符,file-loader可以对文件名称进行hash等处理.便于缓存.
+### 8.通过wifi在真机上运行程序.
+通过usb在真机上运行react-native,查看这篇文章[设备上运行](http://reactnative.cn/docs/running-on-device-android.html#content).
 
-### post-css
-可以编译css文件,结合各种css插件,可以增强css语法.
+下面讲解通过wifi调试安卓程序.
+开始之前，确保你的安卓手机已经ROOT.
+1. 首先让android手机监听指定的端口,这一步需要在手机上使用shell，因此手机上要有终端模拟器，可以安装一个Android Terminal Emulator，打开这个终端，依次敲入下列几行:
+```shell
+1. su           //获取root权限
+2. setprop service.adb.tcp.port 5555  //设置监听的端口，端口可以自定义，如7890，5555是默认的
+3. stop adbd    //关闭adbd
+4. start adbd   //重新启动adbd
+```
+2. 手机和电脑连接上同一网段,记住手机的ip地址,比如:192.168.20.30(可以在手机的无线网络里面找到链接的wifi,点击后可以看到ip地址)
+3. 然后在电脑上通过命令提示符输入:
+```
+adb connect 192.168.20.30:5555
+```
+192.168.20.30是你手机的ip地址,端口是上面命令的端口号.
+4. 确认手机连接上电脑.命令提示符输入:
+```shell
+adb devices
+```
+如果出现你设备的id.说明连接成功.
 
-### autoprefixer
-可以处理css兼容问题,比如css文件中写boder-radisu:5px;autoprefixer会根据can i use的兼容语法来添加前缀.
+###### 提示:如果闲上面的步骤麻烦,可以在手机上下载一个app叫`WiFi ADB`,安装后一键开启.
 
-### script-loader
-可以全局运行一个.js文件.比如有的js文件不是模块化编写的,可以采用这样的方式.
+如果在真机上运行时遇到白屏的情况，请找到并开启悬浮窗权限。比如miui系统的设置[在此处](http://jingyan.baidu.com/article/f25ef25466c0fc482d1b824d.html)。
 
-## html-loader
-可以把html文件变成字符串.
-
-loader的语法:
-```js
-webpack({
-  module: {
-  loaders : [
-    {
-      test: /\.js$/,
-      loader: 'babel-loader',
+如果在运行`react-native run-android`出现`unable to upload some APIs`. 需要在项目文件/android/build.gradle文件里面把
+```
+dependencies {
+        classpath 'com.android.tools.build:gradle:1.3.1'
+        ...
     }
-  ]
-  }
-})
+```
+改成:
+```
+dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+        ...
+    }
 ```
 
-## plugins的使用
-webpack有许多的插件,大多是webpack自带的插件.可以压缩js文件,提取相同的模块,热替换等等.
-
-plugins的语法:
-```js
-webpack({
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-  ]
-})
+如果还是报错.可以采用如下步骤手动打包.
+进入/android路径,命令行输入:
 ```
-
-## 缓存的处理
-每个文件都需要用require()包装起来.
-
-在前端部署的过程中,需要考虑到文件版本的问题,所以采用每个文件的名字hash化,这样可以缓存起来.在使用中需要配置[hash]或者[chunkhash]来处理.在处理完hash之后,如果你只有一个进入点,那么html文件需要通过`assets-webpack-plugin`来得到hash的进入点. 然后替换掉html中的js文件路径.可以采用gulp来替换.采用`gulp-html-replace`来替换html路径.采用`fs-extra`来建立文件夹目录和复制文件.
-
-## 发布处理
-采用git分支处理发布. 源文件分支master发布后可以把文件传到production分支.(还没有想到方案)
-
-## 错误处理
-最好的方式是用插件把每个模块包装起来,然后出错后可以报出事那个模块出文件了.
-
-## 打包慢处理方式
-确保没有打包额外的代码,可以用include来引入需要编译的包.去除node_modules目录等操作. 引入需要引入的包.
-
-## 动态化加载需要的模块
-可以用:
-```js
-require.ensure([], function(require){
-  require('a.js')
-})
+gradlew.bat assembleDebug
 ```
-
-## 后缀自动查找
-使用resolve.extensions来设置自动补全后缀的值,注意`第一个值是空字符串!`,虽然可以自动查找后缀,不过还是建议加上后缀
-```js
-{
-  reslove: {
-    extensions: ['', '.css', '.js']
-  }
-}
+然后继续输入:
 ```
-
-## 打成多个包
-如果一个进入点只打成一个包的话,webpack可以有多个进入点,打包成多个包.配置如下:
-```js
-{
-  entry: {
-    page1: './page1/index.js',
-    page2: './page2/index.js',
-  },
-  output: {
-    path: path.join(__dirname,'./build'),
-    filename: '[name].js',
-  }
-}
+adb install app/build/outputs/apk/app-debug.apk
 ```
+如果,进入apk后,报红屏错误.在手机端进行如下步骤:
+- 1.摇晃设备，或者运行adb shell input keyevent 82，可以打开开发者菜单。
+- 2.点击进入Dev Settings。
+- 3.点击Debug server host for device。
+- 4.输入你电脑的IP地址和端口号（譬如10.0.1.1:8081）。在Mac上，你可以在系统设置/网络里找查询你的IP地址。在Windows上，打开命令提示符并输入ipconfig来查询你的IP地址。在Linux上你可以在终端中输入ifconfig来查询你的IP地址。
+- 5.回到开发者菜单然后选择Reload JS。
 
-## cdn
-由于把文件做了version处理,并且首页的bundle.js需要做cnd处理的时候,可以改变output.publicpath.不过在做html文件替换的时候,还是可以需要替换cnd路径的.
-
-## 单独提取css文件
-ExtractTextPlugin插件可以单独把css文件提取出来.因为在用css-loader的时候,发现大的文件显示不出来.提取出来就可以的.(暂时没有找到解决方案).
-
-## 开发服务器
-可以采用borowerSycn结合webpack-hot-middleware和webpack-dev-middleware来开发.热替换,流刷新,同步操作都有了.
-
-目前这样一套开发流程我已经开源在github,欢迎star:[react-workflow](https://github.com/chen844033231/react-workflow)
-
-## 后记
-webpack遇到的几个坑,一个是ExtractTextPlugin提取css的时候,由于设置了提取相同的插件,会提取出common.js.但是如果css没有相同的,就不会产生common.css.从而给后面的html文件替换hash路径添加了困难.还有在使用`fs-extra`的copy的时候,filter是一次过滤路径和文件.如果写
-```js
-var filter = function(path){
-  return path.spilt('.').pop() === '.html'
-}
-fs.copy('a','b', filter)
-```
-就不能复制下面的目录了,因为目录没有建立,从而得不到文件,需要写成!==来过滤或者过滤文件夹.
+至此,react-native安装成功.有任何问题,可以在issue上反馈-_-
