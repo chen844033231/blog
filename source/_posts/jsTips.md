@@ -60,7 +60,7 @@ if(!~strindexOf('world')) {
 
 
 ***
-<h2 id="#02">#02 向数组中插入元素</h2>
+<h2 id="02">#02 向数组中插入元素</h2>
 在js中,向数组中插入元素,一般想到的就是
 `Array.prototype.push`     末尾追加元素
 `Array.prototype.pop`      末尾移除元素
