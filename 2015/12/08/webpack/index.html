@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>webpack怎么用 | Marchen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="webpack,部署">
+  
+
+  <meta name="description" content="前言最近几天在做关于webpack的项目.在使用过程中,遇到了遇到问题,不过一一解决了,我打算把这篇文章写出webpack的手册.等到自己下次还需要使用webpack的时候,能及时的参看这里的终结.
+什么是webpackwebpack是一个打包工具,可以把文件合并在一起.不过相比于其他的打包工具,webpack可以处理静态资源,比如图片,音频,css,less,sass这样的文件.在webpac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack怎么用">
+<meta property="og:url" content="http://marchen.com/2015/12/08/webpack/index.html">
+<meta property="og:site_name" content="Marchen's Blog">
+<meta property="og:description" content="前言最近几天在做关于webpack的项目.在使用过程中,遇到了遇到问题,不过一一解决了,我打算把这篇文章写出webpack的手册.等到自己下次还需要使用webpack的时候,能及时的参看这里的终结.
+什么是webpackwebpack是一个打包工具,可以把文件合并在一起.不过相比于其他的打包工具,webpack可以处理静态资源,比如图片,音频,css,less,sass这样的文件.在webpac">
+<meta property="og:image" content="http://marchen.com/blog/css/images/webpack.jpg">
+<meta property="og:updated_time" content="2017-02-24T08:20:11.454Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack怎么用">
+<meta name="twitter:description" content="前言最近几天在做关于webpack的项目.在使用过程中,遇到了遇到问题,不过一一解决了,我打算把这篇文章写出webpack的手册.等到自己下次还需要使用webpack的时候,能及时的参看这里的终结.
+什么是webpackwebpack是一个打包工具,可以把文件合并在一起.不过相比于其他的打包工具,webpack可以处理静态资源,比如图片,音频,css,less,sass这样的文件.在webpac">
+<meta name="twitter:image" content="http://marchen.com/blog/css/images/webpack.jpg">
+  
+  
+    <link rel="icon" href="/blog/favicon.png">
+  
+
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+    <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  
+  
+    <link rel="stylesheet" href="/blog/scrollLoading/style.css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/blog/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">Becoming a better Front Engineer</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/blog/blog">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/">WEB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/技巧/">技巧</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/框架/">框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/特效/">特效</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/一辈子/">一辈子</a></li></ul>
+                  
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://marchen.com"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/blog/categories/WEB/框架/">框架</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-webpack" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      webpack怎么用
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/blog/2015/12/08/webpack/" class="article-date">
+  <time datetime="2015-12-08T06:45:25.000Z" itemprop="datePublished">2015-12-08</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><img src="/blog/css/images/webpack.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近几天在做关于webpack的项目.在使用过程中,遇到了遇到问题,不过一一解决了,我打算把这篇文章写出webpack的手册.等到自己下次还需要使用webpack的时候,能及时的参看这里的终结.</p>
+<h2 id="什么是webpack"><a href="#什么是webpack" class="headerlink" title="什么是webpack"></a>什么是webpack</h2><p>webpack是一个打包工具,可以把文件合并在一起.不过相比于其他的打包工具,webpack可以处理静态资源,比如图片,音频,<code>css</code>,<code>less</code>,<code>sass</code>这样的文件.在webpack的世界里面,所有的都是可以被引用的.这样的好处是什么呢?我觉得主要有下面的几个好处:</p>
+<ol>
+<li>模块化开发(这里主要指js文件模块化开发,当然<code>css</code>可以模块化,参看<a href="https://github.com/css-modules/css-modules" target="_blank" rel="external">css-modules</a>).</li>
+<li>打包不只是单单合并文件,还可以用loader来处理文件,也就是能把<code>ES6</code>编译成<code>ES5</code>,把<code>less</code>,<code>sass</code>之类的编译成<code>css</code>.而且<code>css</code>还可以通过<code>autoprefixer</code>来处理兼容性问题.</li>
+<li>在处理静态文件,比如图片,html文件的时候,可以采用<code>url-loader</code>和<code>file-loader</code>来让图片进行<code>hash</code>处理,比较有用的一个是,还可以根据图片的大小来把图片进行base64处理.</li>
+<li>code spilting可以在需要代码的时候动态加载.</li>
+<li>在发布的时候,还可以用插件来压缩js,压缩css等处理.</li>
+<li>开发的时候,可以用热替换模块,让开发根据方便.</li>
+</ol>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p>首先,webpack是用javascript写的,可以在nodejs上运行,所以要使用webpack,需要安装<a href="https://nodejs.org/en/" target="_blank" rel="external">nodejs</a>,在安装完后,安装webpack:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install webpack -g</div></pre></td></tr></table></figure></p>
+<p>注意: 在windows系统上全局安装可能需要你用管理员身份打开命令行工具,其他平台可能需要你授予权限.</p>
+<p>上面的是全局安装webpack,安装后,在命令行输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ webpack</div><div class="line">webpack 1.12.9</div><div class="line">Usage: https://webpack.github.io/docs/cli.html</div><div class="line"></div><div class="line">Options:</div><div class="line">  --help, -h, -?</div><div class="line">  ...</div></pre></td></tr></table></figure></p>
+<p>出现上面的,就代表你安装成功了.</p>
+<p>不过推荐采用本地安装模式,这样可以防止版本冲突.本地安装方式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install webpack --save-dev</div></pre></td></tr></table></figure></p>
+<p>安装成功后,我们新建立2个文件就叫index.js和hello.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index.js</span></div><div class="line"><span class="keyword">const</span> hello = <span class="built_in">require</span>(<span class="string">'./hello.js'</span>)</div><div class="line"><span class="built_in">console</span>.log(hello)</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// hello.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="string">'hello world'</span></div></pre></td></tr></table></figure>
+<p>我们可以看到,我们采用了commonjs的写法,这样的代码本来只能在像nodejs这样的解析器上运行,要让他在浏览器端运行,就需要通过打包工具来处理,比如webpack.</p>
+<p>我们采用nodejs的方式来调用webpack.新建一个文件,webpack.js最简单的配置方式:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack.js</span></div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)  <span class="comment">//需要node版本5.0.0</span></div><div class="line"></div><div class="line">webpack(&#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./index.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: <span class="string">'./'</span>,</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(err) &#123;</div><div class="line">    <span class="keyword">throw</span> err</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bundle successed!'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>我们在运行webpack.js文件.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node webpack.js</div></pre></td></tr></table></figure></p>
+<p>会发现同级目录下多出了bundle.js文件.这个就是我们打包成功的文件.可以运行bundle.js这个文件,看看是不是输出’hello world’字样.</p>
+<p>来点复杂一点的配置,让webpack可以监视文件改变,自动打包:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack</span></div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> bundler = webpack(&#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./index.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: <span class="string">'./'</span>,</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">profile</span>: <span class="literal">true</span>,</div><div class="line">&#125;)</div><div class="line"></div><div class="line">bundler.watch(&#123;</div><div class="line">    <span class="attr">aggregateTimeout</span>: <span class="number">300</span>,  <span class="comment">// 文件改变延迟编译时间</span></div><div class="line">    poll: <span class="literal">false</span>  <span class="comment">// 文件改变重新编译,设置成true或者数字会根据时间间隔轮询文件变化.单位ms.true是系统自动决定间隔时间</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'bundle successed!'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="loader的使用"><a href="#loader的使用" class="headerlink" title="loader的使用"></a>loader的使用</h2><p>webpack原生支持commonjs.ADM,ES6等模块化语法,如果我们想让webpack处理比如<code>less</code>,<code>ES6</code>这样的语法的时候,就需要用到loader,所谓的loader(本质是一个函数)就是webpack会在处理文件的时候,调用这个函数.就能编译<code>less</code>,<code>sass</code>,<code>ES6</code>这样的语法了.推荐几个常用的loader:</p>
+<h3 id="babel-loader"><a href="#babel-loader" class="headerlink" title="babel-loader"></a>babel-loader</h3><p>能把ES6语法编译成ES5语法,最新的babel6需要在.bablerc配置下需要编译什么样的语法.</p>
+<h3 id="url-loader-file-loader"><a href="#url-loader-file-loader" class="headerlink" title="url-loader file-loader"></a>url-loader file-loader</h3><p>url-loader可以把小图片变成base64位的字符,file-loader可以对文件名称进行hash等处理.便于缓存.</p>
+<h3 id="post-css"><a href="#post-css" class="headerlink" title="post-css"></a>post-css</h3><p>可以编译css文件,结合各种css插件,可以增强css语法.</p>
+<h3 id="autoprefixer"><a href="#autoprefixer" class="headerlink" title="autoprefixer"></a>autoprefixer</h3><p>可以处理css兼容问题,比如css文件中写boder-radisu:5px;autoprefixer会根据can i use的兼容语法来添加前缀.</p>
+<h3 id="script-loader"><a href="#script-loader" class="headerlink" title="script-loader"></a>script-loader</h3><p>可以全局运行一个.js文件.比如有的js文件不是模块化编写的,可以采用这样的方式.</p>
+<h2 id="html-loader"><a href="#html-loader" class="headerlink" title="html-loader"></a>html-loader</h2><p>可以把html文件变成字符串.</p>
+<p>loader的语法:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">webpack(&#123;</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">  <span class="attr">loaders</span> : [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">      <span class="attr">loader</span>: <span class="string">'babel-loader'</span>,</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="plugins的使用"><a href="#plugins的使用" class="headerlink" title="plugins的使用"></a>plugins的使用</h2><p>webpack有许多的插件,大多是webpack自带的插件.可以压缩js文件,提取相同的模块,热替换等等.</p>
+<p>plugins的语法:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">webpack(&#123;</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.OccurenceOrderPlugin(),</div><div class="line">  ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="缓存的处理"><a href="#缓存的处理" class="headerlink" title="缓存的处理"></a>缓存的处理</h2><p>每个文件都需要用require()包装起来.</p>
+<p>在前端部署的过程中,需要考虑到文件版本的问题,所以采用每个文件的名字hash化,这样可以缓存起来.在使用中需要配置[hash]或者[chunkhash]来处理.在处理完hash之后,如果你只有一个进入点,那么html文件需要通过<code>assets-webpack-plugin</code>来得到hash的进入点. 然后替换掉html中的js文件路径.可以采用gulp来替换.采用<code>gulp-html-replace</code>来替换html路径.采用<code>fs-extra</code>来建立文件夹目录和复制文件.</p>
+<h2 id="发布处理"><a href="#发布处理" class="headerlink" title="发布处理"></a>发布处理</h2><p>采用git分支处理发布. 源文件分支master发布后可以把文件传到production分支.(还没有想到方案)</p>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>最好的方式是用插件把每个模块包装起来,然后出错后可以报出事那个模块出文件了.</p>
+<h2 id="打包慢处理方式"><a href="#打包慢处理方式" class="headerlink" title="打包慢处理方式"></a>打包慢处理方式</h2><p>确保没有打包额外的代码,可以用include来引入需要编译的包.去除node_modules目录等操作. 引入需要引入的包.</p>
+<h2 id="动态化加载需要的模块"><a href="#动态化加载需要的模块" class="headerlink" title="动态化加载需要的模块"></a>动态化加载需要的模块</h2><p>可以用:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.ensure([], <span class="function"><span class="keyword">function</span>(<span class="params">require</span>)</span>&#123;</div><div class="line">  <span class="built_in">require</span>(<span class="string">'a.js'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="后缀自动查找"><a href="#后缀自动查找" class="headerlink" title="后缀自动查找"></a>后缀自动查找</h2><p>使用resolve.extensions来设置自动补全后缀的值,注意<code>第一个值是空字符串!</code>,虽然可以自动查找后缀,不过还是建议加上后缀<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">reslove</span>: &#123;</div><div class="line">    <span class="attr">extensions</span>: [<span class="string">''</span>, <span class="string">'.css'</span>, <span class="string">'.js'</span>]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="打成多个包"><a href="#打成多个包" class="headerlink" title="打成多个包"></a>打成多个包</h2><p>如果一个进入点只打成一个包的话,webpack可以有多个进入点,打包成多个包.配置如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">page1</span>: <span class="string">'./page1/index.js'</span>,</div><div class="line">    <span class="attr">page2</span>: <span class="string">'./page2/index.js'</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: path.join(__dirname,<span class="string">'./build'</span>),</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].js'</span>,</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="cdn"><a href="#cdn" class="headerlink" title="cdn"></a>cdn</h2><p>由于把文件做了version处理,并且首页的bundle.js需要做cnd处理的时候,可以改变output.publicpath.不过在做html文件替换的时候,还是可以需要替换cnd路径的.</p>
+<h2 id="单独提取css文件"><a href="#单独提取css文件" class="headerlink" title="单独提取css文件"></a>单独提取css文件</h2><p>ExtractTextPlugin插件可以单独把css文件提取出来.因为在用css-loader的时候,发现大的文件显示不出来.提取出来就可以的.(暂时没有找到解决方案).</p>
+<h2 id="开发服务器"><a href="#开发服务器" class="headerlink" title="开发服务器"></a>开发服务器</h2><p>可以采用borowerSycn结合webpack-hot-middleware和webpack-dev-middleware来开发.热替换,流刷新,同步操作都有了.</p>
+<p>目前这样一套开发流程我已经开源在github,欢迎star:<a href="https://github.com/chen844033231/react-workflow" target="_blank" rel="external">react-workflow</a></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>webpack遇到的几个坑,一个是ExtractTextPlugin提取css的时候,由于设置了提取相同的插件,会提取出common.js.但是如果css没有相同的,就不会产生common.css.从而给后面的html文件替换hash路径添加了困难.还有在使用<code>fs-extra</code>的copy的时候,filter是一次过滤路径和文件.如果写<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> filter = <span class="function"><span class="keyword">function</span>(<span class="params">path</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> path.spilt(<span class="string">'.'</span>).pop() === <span class="string">'.html'</span></div><div class="line">&#125;</div><div class="line">fs.copy(<span class="string">'a'</span>,<span class="string">'b'</span>, filter)</div></pre></td></tr></table></figure></p>
+<p>就不能复制下面的目录了,因为目录没有建立,从而得不到文件,需要写成!==来过滤或者过滤文件夹.</p>
+<hr>
+<p>2015-12-9日更新</p>
+<h1 id="webpack做静态缓存"><a href="#webpack做静态缓存" class="headerlink" title="webpack做静态缓存"></a>webpack做静态缓存</h1><p>上面说到webpack可以把打包后的文件名加上<code>hash</code>或者<code>chunkhash</code>.如果你只有一个进入点,那个在index.html需要动态替换<code>script</code>标签和<code>link</code>标签.以前我用的是webpack的一个插件来得到编译后的stat,是一个json文件.然后读取json文件和index.htlm文件,替换响应的script路径.</p>
+<p>现在采用更加友好的方式.用<code>html-webpack-plugin</code>来动态产生index.html文件.这个会自动根据webpack的打包情况加上<code>link</code>和<code>script</code>标签.而且<code>hash</code>或者<code>chunkhash</code>后的文件也可以加上去.加上可以引用模板.十分的方便.从而丢弃手动去改变script的src属性的方法.</p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://marchen.com/blog/2015/12/08/webpack/" data-id="cizjk3xi5000i1kllqshw0ecm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/部署/">部署</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/chen844033231" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2016/01/14/reactNative/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          在windows环境下搭建react-native(超详细教程)
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/blog/2015/12/02/location/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">导航高亮</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/03/04/flex/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/flex/flex.jpg
+)" alt="使用flex来布局界面" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/03/04/flex/" class="title">使用flex来布局界面</a></p>
+              <p class="item-date"><time datetime="2016-03-04T06:58:22.000Z" itemprop="datePublished">2016-03-04</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/19/jsTips/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/tips.jpg
+)" alt="Javascript Tips" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/01/19/jsTips/" class="title">Javascript Tips</a></p>
+              <p class="item-date"><time datetime="2016-01-19T02:24:55.000Z" itemprop="datePublished">2016-01-19</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/14/reactNative/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/reactNative.png
+)" alt="在windows环境下搭建react-native(超详细教程)" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2016/01/14/reactNative/" class="title">在windows环境下搭建react-native(超详细教程)</a></p>
+              <p class="item-date"><time datetime="2016-01-14T07:39:25.000Z" itemprop="datePublished">2016-01-14</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/08/webpack/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/webpack.jpg
+)" alt="webpack怎么用" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2015/12/08/webpack/" class="title">webpack怎么用</a></p>
+              <p class="item-date"><time datetime="2015-12-08T06:45:25.000Z" itemprop="datePublished">2015-12-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/02/location/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/location.jpg
+)" alt="导航高亮" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2015/12/02/location/" class="title">导航高亮</a></p>
+              <p class="item-date"><time datetime="2015-12-02T02:31:05.000Z" itemprop="datePublished">2015-12-02</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/">WEB</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/技巧/">技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/框架/">框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/特效/">特效</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/一辈子/">一辈子</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TED/">TED</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/">babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chartJS/">chartJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/flex/">flex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/">react</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-native/">react-native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/安卓/">安卓</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/导航/">导航</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标签/">标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/生命/">生命</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/部署/">部署</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog/tags/TED/" style="font-size: 10px;">TED</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/blog/tags/chartJS/" style="font-size: 10px;">chartJS</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/flex/" style="font-size: 10px;">flex</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/react/" style="font-size: 20px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/安卓/" style="font-size: 10px;">安卓</a> <a href="/blog/tags/导航/" style="font-size: 10px;">导航</a> <a href="/blog/tags/标签/" style="font-size: 10px;">标签</a> <a href="/blog/tags/生命/" style="font-size: 10px;">生命</a> <a href="/blog/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/blog/" class="logo"></a>
+        </h1>
+        <p>&copy; 2017 Marchen</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <script src="/blog/scrollLoading/jquery.scrollLoading.js"></script>
+  <script src="/blog/scrollLoading/main.js"></script>
+
+
+
+
+<script src="/blog/js/html-patch.js"></script>
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

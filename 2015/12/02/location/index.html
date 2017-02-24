@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>导航高亮 | Marchen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="react,导航">
+  
+
+  <meta name="description" content="非路由菜单高亮传统做法是用class来实现,首先初始化一个高亮按钮,然后通过点击取消掉全部class,然后在给点击的添加class即可.
+采用jq做法如下:123456789101112&amp;lt;ul id=&quot;nav&quot;&amp;gt;  &amp;lt;li class=&quot;item cur&quot;&amp;gt;1&amp;lt;/li&amp;gt;  &amp;lt;li class=&quot;item&quot;&amp;gt;2&amp;lt;/li&amp;gt;  &amp;lt;li">
+<meta property="og:type" content="article">
+<meta property="og:title" content="导航高亮">
+<meta property="og:url" content="http://marchen.com/2015/12/02/location/index.html">
+<meta property="og:site_name" content="Marchen's Blog">
+<meta property="og:description" content="非路由菜单高亮传统做法是用class来实现,首先初始化一个高亮按钮,然后通过点击取消掉全部class,然后在给点击的添加class即可.
+采用jq做法如下:123456789101112&amp;lt;ul id=&quot;nav&quot;&amp;gt;  &amp;lt;li class=&quot;item cur&quot;&amp;gt;1&amp;lt;/li&amp;gt;  &amp;lt;li class=&quot;item&quot;&amp;gt;2&amp;lt;/li&amp;gt;  &amp;lt;li">
+<meta property="og:image" content="http://marchen.com/blog/css/images/location.jpg">
+<meta property="og:updated_time" content="2017-02-24T08:20:11.437Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="导航高亮">
+<meta name="twitter:description" content="非路由菜单高亮传统做法是用class来实现,首先初始化一个高亮按钮,然后通过点击取消掉全部class,然后在给点击的添加class即可.
+采用jq做法如下:123456789101112&amp;lt;ul id=&quot;nav&quot;&amp;gt;  &amp;lt;li class=&quot;item cur&quot;&amp;gt;1&amp;lt;/li&amp;gt;  &amp;lt;li class=&quot;item&quot;&amp;gt;2&amp;lt;/li&amp;gt;  &amp;lt;li">
+<meta name="twitter:image" content="http://marchen.com/blog/css/images/location.jpg">
+  
+  
+    <link rel="icon" href="/blog/favicon.png">
+  
+
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+    <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  
+  
+    <link rel="stylesheet" href="/blog/scrollLoading/style.css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/blog/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">Becoming a better Front Engineer</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/blog/blog">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/">WEB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/技巧/">技巧</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/框架/">框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/特效/">特效</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/一辈子/">一辈子</a></li></ul>
+                  
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://marchen.com"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/blog/categories/WEB/技巧/">技巧</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-location" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      导航高亮
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/blog/2015/12/02/location/" class="article-date">
+  <time datetime="2015-12-02T02:31:05.000Z" itemprop="datePublished">2015-12-02</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><img src="/blog/css/images/location.jpg" alt=""></p>
+<h2 id="非路由菜单高亮"><a href="#非路由菜单高亮" class="headerlink" title="非路由菜单高亮"></a>非路由菜单高亮</h2><p>传统做法是用class来实现,首先初始化一个高亮按钮,然后通过点击取消掉全部class,然后在给点击的添加class即可.</p>
+<p>采用jq做法如下:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;ul id="nav"&gt;</div><div class="line">  &lt;li class="item cur"&gt;1&lt;/li&gt;</div><div class="line">  &lt;li class="item"&gt;2&lt;/li&gt;</div><div class="line">  &lt;li class="item"&gt;3&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  var items = $('#nav li')</div><div class="line">  items.click(function() &#123;</div><div class="line">    var index = this.indexof(items)</div><div class="line">    items.removeClass('cur').eq(index).addClass('cur')</div><div class="line">  &#125;)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>上面的做法需要自己去操作dom节点,而如今流行框架,采用数据的格式来操作dom节点,除非需要复杂的操作.否则抽象化为对象来处理.</p>
+<p>采用对象来处理菜单高亮:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &#123;#each: menu,index&#125;</div><div class="line">  &lt;li class=&#123;menu.activeClass&#125; data-index=&#123;index&#125;&gt;&#123;menu.itemName&#125;&lt;/li&gt;</div><div class="line">  &#123;/each&#125;</div><div class="line">  &#125;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  // es6写法</div><div class="line">   menu = [</div><div class="line">    &#123;</div><div class="line">      itemName : '1',</div><div class="line">      activeClass: 'cur',</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      itemName : '2',</div><div class="line">      activeClass: '',</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      itemName : '3',</div><div class="line">      activeClass: '',</div><div class="line">    &#125;,</div><div class="line">  ]</div><div class="line"></div><div class="line">  handleClick(e) &#123;</div><div class="line">    const curIndex = e.target.getAttribute('data-index')</div><div class="line">    menu.forEach((item, index) =&gt; &#123;</div><div class="line">      if(curIndex === index) &#123;</div><div class="line">        item.activeClass = 'cur'</div><div class="line">      &#125;else &#123;</div><div class="line">        item.activeClass = ''</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="路由高亮"><a href="#路由高亮" class="headerlink" title="路由高亮"></a>路由高亮</h1><p>由于点击高亮和路由高亮有一个重要的区别,就是路由高亮需要涉及到location对象.(服务端路由高亮这里不讨论)</p>
+<p>首先介绍下location对象.这是浏览器(BOM)模型中的一员.挂载到window下.主要负责地址栏上的东西.包括路由重载,替换功能.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 可以看下location对象的属性.</span></div><div class="line"><span class="comment">// 假设url是:http://www.baidu.com:3000/app/dashboard/?name=marchen#index/name</span></div><div class="line">我们采用<span class="built_in">console</span>.log(location),输出如下结果:</div><div class="line">&#123;</div><div class="line">  <span class="attr">ancestorOrigins</span>: DOMStringList,  <span class="comment">// 不清楚什么作用</span></div><div class="line">  assign: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,  <span class="comment">// 加载一个新的文档,这是不改变url加载新文档的方法</span></div><div class="line">  hash: <span class="string">'#index/name'</span>,</div><div class="line">  <span class="attr">host</span>: <span class="string">'www.baidu.com:3000'</span>,</div><div class="line">  <span class="attr">hostname</span>: <span class="string">'www.baidu.com'</span>,</div><div class="line">  <span class="attr">href</span>: <span class="string">'http://www.baidu.com:3000/app/dashboard/?name=marchen#index/name'</span>,</div><div class="line">  <span class="attr">origin</span>: <span class="string">'http://'</span>,</div><div class="line">  <span class="attr">pathname</span>: <span class="string">'/app/dashboard/'</span>,</div><div class="line">  <span class="attr">port</span>: <span class="number">3000</span>,</div><div class="line">  <span class="attr">protocol</span>: <span class="string">'http:'</span>,</div><div class="line">  <span class="attr">reload</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;, <span class="comment">// 重载</span></div><div class="line">  replace: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;, <span class="comment">// 替换</span></div><div class="line">  search: <span class="string">'?name=marchen'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其中高亮路由,也就是根据路径来激活类.需要采用判断路径的方法.如果采用react来实现的话,可以把逻辑封装到组件里面.如果不是的话.可以采用最简单方法:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&#123;location.pathname.include(menu.href)&#125;</span>&gt;</span>&#123;menu.name&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line">&lt;<span class="regexp">/ul&gt;</span></div></pre></td></tr></table></figure></p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://marchen.com/blog/2015/12/02/location/" data-id="cizjk3xhy000e1kllc5j3hm08" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/导航/">导航</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/chen844033231" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2015/12/08/webpack/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          webpack怎么用
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/blog/2015/11/25/reactES6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">用ES6来写React组件</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/03/04/flex/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/flex/flex.jpg
+)" alt="使用flex来布局界面" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/03/04/flex/" class="title">使用flex来布局界面</a></p>
+              <p class="item-date"><time datetime="2016-03-04T06:58:22.000Z" itemprop="datePublished">2016-03-04</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/19/jsTips/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/tips.jpg
+)" alt="Javascript Tips" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/01/19/jsTips/" class="title">Javascript Tips</a></p>
+              <p class="item-date"><time datetime="2016-01-19T02:24:55.000Z" itemprop="datePublished">2016-01-19</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/14/reactNative/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/reactNative.png
+)" alt="在windows环境下搭建react-native(超详细教程)" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2016/01/14/reactNative/" class="title">在windows环境下搭建react-native(超详细教程)</a></p>
+              <p class="item-date"><time datetime="2016-01-14T07:39:25.000Z" itemprop="datePublished">2016-01-14</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/08/webpack/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/webpack.jpg
+)" alt="webpack怎么用" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2015/12/08/webpack/" class="title">webpack怎么用</a></p>
+              <p class="item-date"><time datetime="2015-12-08T06:45:25.000Z" itemprop="datePublished">2015-12-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/02/location/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/location.jpg
+)" alt="导航高亮" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2015/12/02/location/" class="title">导航高亮</a></p>
+              <p class="item-date"><time datetime="2015-12-02T02:31:05.000Z" itemprop="datePublished">2015-12-02</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/">WEB</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/技巧/">技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/框架/">框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/特效/">特效</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/一辈子/">一辈子</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TED/">TED</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/">babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chartJS/">chartJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/flex/">flex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/">react</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-native/">react-native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/安卓/">安卓</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/导航/">导航</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标签/">标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/生命/">生命</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/部署/">部署</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog/tags/TED/" style="font-size: 10px;">TED</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/blog/tags/chartJS/" style="font-size: 10px;">chartJS</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/flex/" style="font-size: 10px;">flex</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/react/" style="font-size: 20px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/安卓/" style="font-size: 10px;">安卓</a> <a href="/blog/tags/导航/" style="font-size: 10px;">导航</a> <a href="/blog/tags/标签/" style="font-size: 10px;">标签</a> <a href="/blog/tags/生命/" style="font-size: 10px;">生命</a> <a href="/blog/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/blog/" class="logo"></a>
+        </h1>
+        <p>&copy; 2017 Marchen</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <script src="/blog/scrollLoading/jquery.scrollLoading.js"></script>
+  <script src="/blog/scrollLoading/main.js"></script>
+
+
+
+
+<script src="/blog/js/html-patch.js"></script>
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

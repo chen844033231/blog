@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CPU踩点图 | Marchen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="canvas,chartJS">
+  
+
+  <meta name="description" content="CPU占比探测用js来检查当前系统cpu的占用比例,通过 setTimeout 的方式探测 CPU 的大小，这样可以实现网页游戏中动画等耗时操作的自动调节。这个原理是很多人都知道的,就是用JS来踩点.
+12345678910var data = []var tfunction pulse() &amp;#123;  t &amp;amp;&amp;amp; data.push(Date.now() - t)    t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPU踩点图">
+<meta property="og:url" content="http://marchen.com/2015/11/23/canvasCPU/index.html">
+<meta property="og:site_name" content="Marchen's Blog">
+<meta property="og:description" content="CPU占比探测用js来检查当前系统cpu的占用比例,通过 setTimeout 的方式探测 CPU 的大小，这样可以实现网页游戏中动画等耗时操作的自动调节。这个原理是很多人都知道的,就是用JS来踩点.
+12345678910var data = []var tfunction pulse() &amp;#123;  t &amp;amp;&amp;amp; data.push(Date.now() - t)    t">
+<meta property="og:image" content="http://marchen.com/blog/css/images/cpu.jpg">
+<meta property="og:updated_time" content="2017-02-24T08:20:11.408Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CPU踩点图">
+<meta name="twitter:description" content="CPU占比探测用js来检查当前系统cpu的占用比例,通过 setTimeout 的方式探测 CPU 的大小，这样可以实现网页游戏中动画等耗时操作的自动调节。这个原理是很多人都知道的,就是用JS来踩点.
+12345678910var data = []var tfunction pulse() &amp;#123;  t &amp;amp;&amp;amp; data.push(Date.now() - t)    t">
+<meta name="twitter:image" content="http://marchen.com/blog/css/images/cpu.jpg">
+  
+  
+    <link rel="icon" href="/blog/favicon.png">
+  
+
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+    <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  
+  
+    <link rel="stylesheet" href="/blog/scrollLoading/style.css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/blog/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">Becoming a better Front Engineer</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/blog/blog">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/">WEB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/技巧/">技巧</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/框架/">框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/特效/">特效</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/一辈子/">一辈子</a></li></ul>
+                  
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://marchen.com"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/blog/categories/WEB/特效/">特效</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-canvasCPU" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      CPU踩点图
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/blog/2015/11/23/canvasCPU/" class="article-date">
+  <time datetime="2015-11-23T14:59:33.000Z" itemprop="datePublished">2015-11-23</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><img src="/blog/css/images/cpu.jpg" alt=""></p>
+<p>CPU占比探测用js来检查当前系统cpu的占用比例,通过 setTimeout 的方式探测 CPU 的大小，这样可以实现网页游戏中动画等耗时操作的自动调节。这个原理是很多人都知道的,就是用JS来踩点.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = []</div><div class="line"><span class="keyword">var</span> t</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">pulse</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  t &amp;&amp; data.push(<span class="built_in">Date</span>.now() - t)  </div><div class="line">  t = <span class="built_in">Date</span>.now()  </div><div class="line">  setTimeout(pulse, <span class="number">50</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">pulse()</div></pre></td></tr></table></figure>
+<p>就是每隔 50ms 打一下点。理想情况下，data 的值应该是</p>
+<p>data = [50, 50, 50, 50, …]</p>
+<p>但实际情况，data 会是</p>
+<p>data = [51, 52, 50, 52, …]</p>
+<p>当 CPU 比较忙时，data 的数据变成</p>
+<p>data = [81, 102, 90, 62, …]</p>
+<p>即 CPU 越忙，data 数据项会越大。这样，记录一系列 data 值，就可以绘制出 CPU 占比趋势图，和通过任务管理器看到的 CPU 趋势图非常接近。</p>
+<p>采用这样的思路,用js来画出cpu图片只需要下面的条件:<br>1 data数据不能无限增长,要控制数组长度.于是就用Array.shift()来控制<br>2 学习chartjs这个开源库,很简单,看看chartjs的文档就行了.chartjs中文文档<br>3 用自己的智慧.(饿,是显而易见的操作).来写个简单的实现</p>
+<p>以下就是实现代码:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line"></div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset="utf-8" /&gt;</div><div class="line">    &lt;meta name="author" content="marchen" /&gt;</div><div class="line">    &lt;title&gt;cpu踩点图&lt;/title&gt;</div><div class="line">    &lt;script src="http://cdn.bootcss.com/Chart.js/0.2.0/Chart.min.js"&gt;&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">    &lt;header&gt;</div><div class="line">        &lt;h1&gt;CPU踩点图&lt;/h1&gt;&lt;/header&gt;</div><div class="line">    &lt;canvas id="myChart" width="1000" height="800" style="border:1px solid red"&gt;</div><div class="line">        dont support canvas!</div><div class="line">    &lt;/canvas&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">    var ctx = document.getElementById("myChart").getContext("2d");</div><div class="line">    var data = null; //数据结构</div><div class="line">    var timer = []; //x轴数字</div><div class="line">    var i = 0; //迭代数字</div><div class="line">    var info = []; //绘图信息</div><div class="line">    var timeInt = 50; //时间间隔ms</div><div class="line">    var timerNum = 20 //x轴参数个数</div><div class="line">    var t; //打点取值时间</div><div class="line">    var op = &#123;</div><div class="line">        scaleOverride: true,</div><div class="line">        //** Required if scaleOverride is true **</div><div class="line">        //Number - The number of steps in a hard coded scale</div><div class="line">        scaleSteps: 40,</div><div class="line">        //Number - The value jump in the hard coded scale</div><div class="line">        scaleStepWidth: 1.5,</div><div class="line">        //Number - The scale starting value</div><div class="line">        scaleStartValue: 50,</div><div class="line">        animation: false</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    function drawCpu() &#123;</div><div class="line">        //打点取值</div><div class="line">        t &amp;&amp; info.push(Date.now() - t);</div><div class="line">        t = Date.now();</div><div class="line">        if (info.length &gt; timeInt) info.shift(); //控制数组长度</div><div class="line">        //先前处理</div><div class="line">        timer.push(i++);</div><div class="line">        if (timer.length &gt; timerNum) timer.shift();</div><div class="line">        data = &#123;</div><div class="line">            labels: timer,</div><div class="line">            datasets: [&#123;</div><div class="line">                fillColor: "rgba(40,20,0,0.5)",</div><div class="line">                strokeColor: "rgba(220,220,220,1)",</div><div class="line">                data: info</div><div class="line">            &#125;]</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        new Chart(ctx).Bar(data, op);</div><div class="line">        setTimeout("drawCpu()", timeInt);</div><div class="line">    &#125;</div><div class="line">    drawCpu();</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>So,javascript能干什么?我想这个问题不用问了吧,虽然他的运行速度没有c那么快,但是编程的思想是一样的,c能做的事,为何js不能做呢?还可以试着用js来检测电脑性能,可以用来做很多有趣的事情.</p>
+<p>掌握一门语言很幸福.</p>
+<p>你能想着,我会编程,别人不会,那是多美的事情?do u think so?</p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://marchen.com/blog/2015/11/23/canvasCPU/" data-id="cizjk3xgz00011kllsqhiwqqp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/chartJS/">chartJS</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/chen844033231" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2015/11/25/reactES6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          用ES6来写React组件
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/blog/2015/11/23/learnHTML/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">learnHTML</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/03/04/flex/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/flex/flex.jpg
+)" alt="使用flex来布局界面" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/03/04/flex/" class="title">使用flex来布局界面</a></p>
+              <p class="item-date"><time datetime="2016-03-04T06:58:22.000Z" itemprop="datePublished">2016-03-04</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/19/jsTips/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/tips.jpg
+)" alt="Javascript Tips" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/01/19/jsTips/" class="title">Javascript Tips</a></p>
+              <p class="item-date"><time datetime="2016-01-19T02:24:55.000Z" itemprop="datePublished">2016-01-19</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/14/reactNative/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/reactNative.png
+)" alt="在windows环境下搭建react-native(超详细教程)" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2016/01/14/reactNative/" class="title">在windows环境下搭建react-native(超详细教程)</a></p>
+              <p class="item-date"><time datetime="2016-01-14T07:39:25.000Z" itemprop="datePublished">2016-01-14</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/08/webpack/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/webpack.jpg
+)" alt="webpack怎么用" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2015/12/08/webpack/" class="title">webpack怎么用</a></p>
+              <p class="item-date"><time datetime="2015-12-08T06:45:25.000Z" itemprop="datePublished">2015-12-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/02/location/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/location.jpg
+)" alt="导航高亮" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2015/12/02/location/" class="title">导航高亮</a></p>
+              <p class="item-date"><time datetime="2015-12-02T02:31:05.000Z" itemprop="datePublished">2015-12-02</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/">WEB</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/技巧/">技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/框架/">框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/特效/">特效</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/一辈子/">一辈子</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TED/">TED</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/">babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chartJS/">chartJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/flex/">flex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/">react</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-native/">react-native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/安卓/">安卓</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/导航/">导航</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标签/">标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/生命/">生命</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/部署/">部署</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog/tags/TED/" style="font-size: 10px;">TED</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/blog/tags/chartJS/" style="font-size: 10px;">chartJS</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/flex/" style="font-size: 10px;">flex</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/react/" style="font-size: 20px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/安卓/" style="font-size: 10px;">安卓</a> <a href="/blog/tags/导航/" style="font-size: 10px;">导航</a> <a href="/blog/tags/标签/" style="font-size: 10px;">标签</a> <a href="/blog/tags/生命/" style="font-size: 10px;">生命</a> <a href="/blog/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/blog/" class="logo"></a>
+        </h1>
+        <p>&copy; 2017 Marchen</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <script src="/blog/scrollLoading/jquery.scrollLoading.js"></script>
+  <script src="/blog/scrollLoading/main.js"></script>
+
+
+
+
+<script src="/blog/js/html-patch.js"></script>
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

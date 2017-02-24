@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在windows环境下搭建react-native(超详细教程) | Marchen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="react-native,安卓">
+  
+
+  <meta name="description" content="前言facebook开源的react-native可以采用javascript技术来开发安卓和ios原生应用,但是在开发之前,许多新同学都被搭建环境,运行起第一个hello world程序给拦住了,导致后面的步骤没法进行,笔者看了下目前react-natvie在windows上搭建安卓开发环境的文章,没有写的十分详细,所以打算写一篇详细的文章,来带领初学者在windows上搭建一个react-n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在windows环境下搭建react-native(超详细教程)">
+<meta property="og:url" content="http://marchen.com/2016/01/14/reactNative/index.html">
+<meta property="og:site_name" content="Marchen's Blog">
+<meta property="og:description" content="前言facebook开源的react-native可以采用javascript技术来开发安卓和ios原生应用,但是在开发之前,许多新同学都被搭建环境,运行起第一个hello world程序给拦住了,导致后面的步骤没法进行,笔者看了下目前react-natvie在windows上搭建安卓开发环境的文章,没有写的十分详细,所以打算写一篇详细的文章,来带领初学者在windows上搭建一个react-n">
+<meta property="og:image" content="http://marchen.com/blog/css/images/reactNative.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/reactNative/jdk.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/reactNative/javac.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/reactNative/sdk.png">
+<meta property="og:updated_time" content="2017-02-24T08:20:11.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在windows环境下搭建react-native(超详细教程)">
+<meta name="twitter:description" content="前言facebook开源的react-native可以采用javascript技术来开发安卓和ios原生应用,但是在开发之前,许多新同学都被搭建环境,运行起第一个hello world程序给拦住了,导致后面的步骤没法进行,笔者看了下目前react-natvie在windows上搭建安卓开发环境的文章,没有写的十分详细,所以打算写一篇详细的文章,来带领初学者在windows上搭建一个react-n">
+<meta name="twitter:image" content="http://marchen.com/blog/css/images/reactNative.png">
+  
+  
+    <link rel="icon" href="/blog/favicon.png">
+  
+
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+    <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  
+  
+    <link rel="stylesheet" href="/blog/scrollLoading/style.css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/blog/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">Becoming a better Front Engineer</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/blog/blog">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/">WEB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/技巧/">技巧</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/框架/">框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/特效/">特效</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/一辈子/">一辈子</a></li></ul>
+                  
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://marchen.com"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/blog/categories/WEB/框架/">框架</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-reactNative" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      在windows环境下搭建react-native(超详细教程)
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/blog/2016/01/14/reactNative/" class="article-date">
+  <time datetime="2016-01-14T07:39:25.000Z" itemprop="datePublished">2016-01-14</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><img src="/blog/css/images/reactNative.png" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>facebook开源的react-native可以采用javascript技术来开发安卓和ios原生应用,但是在开发之前,许多新同学都被搭建环境,运行起第一个hello world程序给拦住了,导致后面的步骤没法进行,笔者看了下目前react-natvie在windows上搭建安卓开发环境的文章,没有写的十分详细,所以打算写一篇详细的文章,来带领初学者在windows上搭建一个react-native的教程.</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>(重要提示:推荐全程翻墙,或者采用vpn,不然可能会有未知问题).如果没有VPN,推荐一个免费的<a href="http://free.vpn.wwdhz.com/" target="_blank" rel="external">1小时免费vpn</a>.</p>
+<p>下面的教程基于目前最新版react-native(0.18.0-rc)来搭建.react-native是对安卓的原生代码进行了封装,所以,如果要想在windows上运行安卓程序,需要安装java环境.在安装了java环境后,需要安装android sdk.当这些都安装好后,就可以安装react-native相关东西了.下面一步步进行安装讲解:</p>
+<h3 id="1-下载java环境-JDK"><a href="#1-下载java环境-JDK" class="headerlink" title="1. 下载java环境(JDK)."></a>1. 下载java环境(JDK).</h3><p>进入<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">JDK下载</a><br><img src="/blog/css/images/reactNative/jdk.png" alt=""></p>
+<p>下载相应系统的jdk.下面演示采用64位的windows. 下载后安装,记住时安装目录.默认安装到(C:\Program Files\java),后面需要加入环境变量.</p>
+<h3 id="2-添加java路径到环境变量"><a href="#2-添加java路径到环境变量" class="headerlink" title="2. 添加java路径到环境变量."></a>2. 添加java路径到环境变量.</h3><p>在桌面上,找到的计算机图标,右击-属性-高级系统设置-环境变量-系统变量里面找到Path,然后把java路径加入到path路径中.确定后退出.<br>例如我下载后java安装到了<code>C:\Program Files\Java</code>,然后把<code>C:\Program Files\Java\jdk1.8.0_65\bin</code>加入到path路径.<br>进入命令提示符.输入 <code>javac</code>.如果输出一大串用法提示. 就代表jdk安装成功.可以继续后面的步骤了.如果没有,那么需要重新安装JDK.检测下是否忘记把jdk加入环境变量.<br><img src="/blog/css/images/reactNative/javac.png" alt=""></p>
+<h3 id="3-下载安装android-SDK"><a href="#3-下载安装android-SDK" class="headerlink" title="3. 下载安装android SDK."></a>3. 下载安装android SDK.</h3><p>如果你以前没有安装过android SDK,最简单的方法是到android官方下载<a href="https://developer.android.com/sdk/index.html" target="_blank" rel="external">android studio</a>.这个是android官方推荐的编辑器,里面包含了开发安卓的工具和sdk包.到这里下载<a href="https://developer.android.com/sdk/index.html" target="_blank" rel="external">android studio</a>. (需要翻墙). 如果没有翻墙工具,国内用户可以到<a href="http://androiddevtools.cn/" target="_blank" rel="external">android dev tools</a>下载android studio. 作为演示用android studio1.5.1正式版.(这个只是编辑器,不包含 sdk).推荐直接下载全部的android studio.</p>
+<h3 id="4-设置SDK"><a href="#4-设置SDK" class="headerlink" title="4. 设置SDK"></a>4. 设置SDK</h3><p>打开Android SDK Manager.(在安装的sdk目录下有个SDK Manager.exe,双击运行).<br>选中以下项目：<br>Android SDK Build-tools version 23.0.1<br>Android 6.0 (API 23)<br>Android Support Repository<br>点击”Install Packages” (国内用户推荐使用腾讯Bugly的镜像来加速下载)<br><img src="/blog/css/images/reactNative/sdk.png" alt=""></p>
+<h3 id="5-模拟器安装"><a href="#5-模拟器安装" class="headerlink" title="5. 模拟器安装"></a>5. 模拟器安装</h3><p>安装Genymotion,Genymotion是一个第三方模拟器，它比Google官方的模拟器更易设置且性能更好。但是，它只针对个人用户免费。如果你想使用Google模拟器，请往下看。</p>
+<ul>
+<li>下载并安装<a href="https://www.genymotion.com/" target="_blank" rel="external">Genymotion</a>,进入官方下载页面.(注意看下面有个If you want Genymotion for personal use only, please download it here,个人免费版本).</li>
+<li>打开Genymotion。如果你尚未安装VirtualBox，它有可能会提示你安装。</li>
+<li>创建一个模拟器并启动。(下载模拟器需要翻墙)</li>
+<li>按下⌘+M可以打开开发者菜单（在安装并启动了React Native应用之后）。</li>
+</ul>
+<h6 id="备选方案：使用Google官方模拟器-不推荐-笔者没成功"><a href="#备选方案：使用Google官方模拟器-不推荐-笔者没成功" class="headerlink" title="备选方案：使用Google官方模拟器 (不推荐,笔者没成功)"></a>备选方案：使用Google官方模拟器 (不推荐,笔者没成功)</h6><p>打开Android SDK Manager(参见”设置SDK”一步)</p>
+<p>选中以下项目：</p>
+<ul>
+<li>Intel x86 Atom System Image (for Android 5.1.1 - API 22)</li>
+<li>Intel x86 Emulator Accelerator (HAXM installer)</li>
+</ul>
+<p>点击”Install Packages”<br>配置硬件加速(HAXM)，否则模拟器会运行的相当缓慢。<br>创建Android虚拟设备(AVD):<br>运行android avd并且点击Create… （译注：在Windows系统下，android.bat在Android SDK的tools文件夹下，请注意设置PATH环境变量以便于使用） 创建虚拟设备对话框<br>选中新创建的虚拟设备，并点击Start…</p>
+<p>注意:对于Windows用户而言，Intel x86 Emulator Accelerator和HyperV（系统内置的虚拟机功能）不能同时启用。所以要么选择关闭HyperV（控制面板-程序-启动和关闭Windows功能，取消选择HyperV并点确定），要么选择Genymotion或Bluestacks作为模拟器</p>
+<h3 id="6-安装react-native"><a href="#6-安装react-native" class="headerlink" title="6.安装react-native"></a>6.安装react-native</h3><p>当在把<code>jdk</code>和<code>android sdk</code>安装好后,进行react-native的安装.在终端输入(需要用管理员权限运行命令提示符):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g react-native-cli</div></pre></td></tr></table></figure></p>
+<p>react-native-cli是一个终端命令，它可以完成其余的设置工作。它可以通过npm安装。刚才这条命令会往你的终端安装一个叫做<code>react-native</code>的命令。这个安装过程你只需要进行一次。</p>
+<p>然后找到需要建立项目的文件夹,在这个路径下运行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-native init MyFirstProject</div></pre></td></tr></table></figure></p>
+<p>这个命令会初始化一个工程、下载React Native的所有源代码和依赖包，最后在MyFirstProject/iOS/MyFirstProject.xcodeproj和MyFirstProject/android/app下分别创建一个新的XCode工程和一个gradle工程.</p>
+<p>注意: 上面的步骤将会从npm下载依赖包,如果npm源下载比较慢,可以换成淘宝的源,然后重新运行命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm config set registry https://registry.npm.taobao.org</div><div class="line">npm config set disturl https://npm.taobao.org/dist</div></pre></td></tr></table></figure></p>
+<h3 id="6-运行项目"><a href="#6-运行项目" class="headerlink" title="6.运行项目"></a>6.运行项目</h3><p>首先确认是否有可以使用的设备,可以通过在命令行输入<code>adb devices</code>,查看可用的设备.(adb命令需要把android的sdk/platform-tools加入环境变量.)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ adb devices</div><div class="line">List of devices attached</div><div class="line">emulator-5554 offline   # Google模拟器</div><div class="line">14ed2fcc device         # 真实设备</div></pre></td></tr></table></figure></p>
+<p>在右边那列看到device说明你的设备已经被正确连接了。注意，你只应当连接仅仅一个设备。</p>
+<p>注意:如果你连接了多个设备（包含模拟器在内），后续的一些操作可能会失败。拔掉不需要的设备，或者关掉模拟器，确保adb devices的输出只有一个是连接状态。</p>
+<p>现在你可以运行<code>react-native start</code>和<code>react-native run-android</code>来在设备上安装并启动应用了。</p>
+<p>注意:在真机上运行时可能会遇到白屏的情况，请找到并开启悬浮窗权限。比如miui系统的设置<a href="http://jingyan.baidu.com/article/f25ef25466c0fc482d1b824d.html" target="_blank" rel="external">在此处</a>。</p>
+<h3 id="7-运行hello-world项目"><a href="#7-运行hello-world项目" class="headerlink" title="7.运行hello world项目"></a>7.运行hello world项目</h3><p>在项目文件路径下输入命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-natvie start</div></pre></td></tr></table></figure></p>
+<p>这个命令会运行一个packager进程,来打包react-native程序.然后在打开一个新的命令提示符窗口.在项目文件路径下输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-natvie run-android</div></pre></td></tr></table></figure></p>
+<p>等待模拟设备上弹出hello-world.</p>
+<h3 id="8-通过wifi在真机上运行程序"><a href="#8-通过wifi在真机上运行程序" class="headerlink" title="8.通过wifi在真机上运行程序."></a>8.通过wifi在真机上运行程序.</h3><p>通过usb在真机上运行react-native,查看这篇文章<a href="http://reactnative.cn/docs/running-on-device-android.html#content" target="_blank" rel="external">设备上运行</a>.</p>
+<p>下面讲解通过wifi调试安卓程序.<br>开始之前，确保你的安卓手机已经ROOT.</p>
+<ol>
+<li><p>首先让android手机监听指定的端口,这一步需要在手机上使用shell，因此手机上要有终端模拟器，可以安装一个Android Terminal Emulator，打开这个终端，依次敲入下列几行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1. su           //获取root权限</div><div class="line">2. setprop service.adb.tcp.port 5555  //设置监听的端口，端口可以自定义，如7890，5555是默认的</div><div class="line">3. stop adbd    //关闭adbd</div><div class="line">4. start adbd   //重新启动adbd</div></pre></td></tr></table></figure>
+</li>
+<li><p>手机和电脑连接上同一网段,记住手机的ip地址,比如:192.168.20.30(可以在手机的无线网络里面找到链接的wifi,点击后可以看到ip地址)</p>
+</li>
+<li>然后在电脑上通过命令提示符输入:<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">adb</span> <span class="selector-tag">connect</span> 192<span class="selector-class">.168</span><span class="selector-class">.20</span><span class="selector-class">.30</span><span class="selector-pseudo">:5555</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>192.168.20.30是你手机的ip地址,端口是上面命令的端口号.</p>
+<ol>
+<li>确认手机连接上电脑.命令提示符输入:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb devices</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果出现你设备的id.说明连接成功.</p>
+<h6 id="提示-如果闲上面的步骤麻烦-可以在手机上下载一个app叫WiFi-ADB-安装后一键开启"><a href="#提示-如果闲上面的步骤麻烦-可以在手机上下载一个app叫WiFi-ADB-安装后一键开启" class="headerlink" title="提示:如果闲上面的步骤麻烦,可以在手机上下载一个app叫WiFi ADB,安装后一键开启."></a>提示:如果闲上面的步骤麻烦,可以在手机上下载一个app叫<code>WiFi ADB</code>,安装后一键开启.</h6><p>如果在真机上运行时遇到白屏的情况，请找到并开启悬浮窗权限。比如miui系统的设置<a href="http://jingyan.baidu.com/article/f25ef25466c0fc482d1b824d.html" target="_blank" rel="external">在此处</a>。</p>
+<p>如果在运行<code>react-native run-android</code>出现<code>unable to upload some APIs</code>. 需要在项目文件/android/build.gradle文件里面把<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:1.3.1'</span></div><div class="line">        ...</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>改成:<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dependencies</span> &#123;</div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:1.5.0'</span></div><div class="line">        ...</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>如果还是报错.可以采用如下步骤手动打包.<br>进入/android路径,命令行输入:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gradlew<span class="selector-class">.bat</span> assembleDebug</div></pre></td></tr></table></figure></p>
+<p>然后继续输入:<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb install app<span class="regexp">/build/</span>outputs<span class="regexp">/apk/</span>app-debug.apk</div></pre></td></tr></table></figure></p>
+<p>如果,进入apk后,报红屏错误.在手机端进行如下步骤:</p>
+<ul>
+<li>1.摇晃设备，或者运行adb shell input keyevent 82，可以打开开发者菜单。</li>
+<li>2.点击进入Dev Settings。</li>
+<li>3.点击Debug server host for device。</li>
+<li>4.输入你电脑的IP地址和端口号（譬如10.0.1.1:8081）。在Mac上，你可以在系统设置/网络里找查询你的IP地址。在Windows上，打开命令提示符并输入ipconfig来查询你的IP地址。在Linux上你可以在终端中输入ifconfig来查询你的IP地址。</li>
+<li>5.回到开发者菜单然后选择Reload JS。</li>
+</ul>
+<p>至此,react-native安装成功.有任何问题,可以在issue上反馈-_-</p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://marchen.com/blog/2016/01/14/reactNative/" data-id="cizjk3xi1000f1kll3hfqhrau" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/react-native/">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/安卓/">安卓</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/chen844033231" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2016/01/19/jsTips/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          Javascript Tips
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/blog/2015/12/08/webpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">webpack怎么用</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/03/04/flex/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/flex/flex.jpg
+)" alt="使用flex来布局界面" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/03/04/flex/" class="title">使用flex来布局界面</a></p>
+              <p class="item-date"><time datetime="2016-03-04T06:58:22.000Z" itemprop="datePublished">2016-03-04</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/19/jsTips/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/tips.jpg
+)" alt="Javascript Tips" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/01/19/jsTips/" class="title">Javascript Tips</a></p>
+              <p class="item-date"><time datetime="2016-01-19T02:24:55.000Z" itemprop="datePublished">2016-01-19</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/14/reactNative/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/reactNative.png
+)" alt="在windows环境下搭建react-native(超详细教程)" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2016/01/14/reactNative/" class="title">在windows环境下搭建react-native(超详细教程)</a></p>
+              <p class="item-date"><time datetime="2016-01-14T07:39:25.000Z" itemprop="datePublished">2016-01-14</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/08/webpack/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/webpack.jpg
+)" alt="webpack怎么用" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2015/12/08/webpack/" class="title">webpack怎么用</a></p>
+              <p class="item-date"><time datetime="2015-12-08T06:45:25.000Z" itemprop="datePublished">2015-12-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/02/location/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/location.jpg
+)" alt="导航高亮" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2015/12/02/location/" class="title">导航高亮</a></p>
+              <p class="item-date"><time datetime="2015-12-02T02:31:05.000Z" itemprop="datePublished">2015-12-02</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/">WEB</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/技巧/">技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/框架/">框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/特效/">特效</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/一辈子/">一辈子</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TED/">TED</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/">babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chartJS/">chartJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/flex/">flex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/">react</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-native/">react-native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/安卓/">安卓</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/导航/">导航</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标签/">标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/生命/">生命</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/部署/">部署</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog/tags/TED/" style="font-size: 10px;">TED</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/blog/tags/chartJS/" style="font-size: 10px;">chartJS</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/flex/" style="font-size: 10px;">flex</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/react/" style="font-size: 20px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/安卓/" style="font-size: 10px;">安卓</a> <a href="/blog/tags/导航/" style="font-size: 10px;">导航</a> <a href="/blog/tags/标签/" style="font-size: 10px;">标签</a> <a href="/blog/tags/生命/" style="font-size: 10px;">生命</a> <a href="/blog/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/blog/" class="logo"></a>
+        </h1>
+        <p>&copy; 2017 Marchen</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <script src="/blog/scrollLoading/jquery.scrollLoading.js"></script>
+  <script src="/blog/scrollLoading/main.js"></script>
+
+
+
+
+<script src="/blog/js/html-patch.js"></script>
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

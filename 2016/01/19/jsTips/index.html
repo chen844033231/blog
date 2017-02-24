@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Javascript Tips | Marchen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="javascript">
+  
+
+  <meta name="description" content="Javascript是门灵活的语言,有许多小的技巧可能让你的JS技术更上一层,来看看下面总结的JS编码技巧你是否都知道呢?
+总览
+#01 变量转换成整数
+#02 向数组中插入元素
+#03 正确的清空对象
+
+
+#01 变量转换成整数在javascript中,把变量转换成整数是十分常见的操作,js原生提供的方法parseInt可以把字符串转换成整数.但是还有一个常见的方法是用~~操作符来将数字或者字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript Tips">
+<meta property="og:url" content="http://marchen.com/2016/01/19/jsTips/index.html">
+<meta property="og:site_name" content="Marchen's Blog">
+<meta property="og:description" content="Javascript是门灵活的语言,有许多小的技巧可能让你的JS技术更上一层,来看看下面总结的JS编码技巧你是否都知道呢?
+总览
+#01 变量转换成整数
+#02 向数组中插入元素
+#03 正确的清空对象
+
+
+#01 变量转换成整数在javascript中,把变量转换成整数是十分常见的操作,js原生提供的方法parseInt可以把字符串转换成整数.但是还有一个常见的方法是用~~操作符来将数字或者字">
+<meta property="og:image" content="http://marchen.com/blog/css/images/tips.jpg">
+<meta property="og:updated_time" content="2017-02-24T08:20:11.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript Tips">
+<meta name="twitter:description" content="Javascript是门灵活的语言,有许多小的技巧可能让你的JS技术更上一层,来看看下面总结的JS编码技巧你是否都知道呢?
+总览
+#01 变量转换成整数
+#02 向数组中插入元素
+#03 正确的清空对象
+
+
+#01 变量转换成整数在javascript中,把变量转换成整数是十分常见的操作,js原生提供的方法parseInt可以把字符串转换成整数.但是还有一个常见的方法是用~~操作符来将数字或者字">
+<meta name="twitter:image" content="http://marchen.com/blog/css/images/tips.jpg">
+  
+  
+    <link rel="icon" href="/blog/favicon.png">
+  
+
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+    <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  
+  
+    <link rel="stylesheet" href="/blog/scrollLoading/style.css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/blog/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">Becoming a better Front Engineer</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/blog/blog">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/">WEB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/技巧/">技巧</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/框架/">框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/特效/">特效</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/一辈子/">一辈子</a></li></ul>
+                  
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://marchen.com"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/blog/categories/WEB/技巧/">技巧</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-jsTips" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript Tips
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/blog/2016/01/19/jsTips/" class="article-date">
+  <time datetime="2016-01-19T02:24:55.000Z" itemprop="datePublished">2016-01-19</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><img src="/blog/css/images/tips.jpg" alt=""></p>
+<p>Javascript是门灵活的语言,有许多小的技巧可能让你的JS技术更上一层,来看看下面总结的JS编码技巧你是否都知道呢?</p>
+<h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><ul>
+<li><a href="#01">#01 变量转换成整数</a></li>
+<li><a href="#02">#02 向数组中插入元素</a></li>
+<li><a href="#03">#03 正确的清空对象</a></li>
+</ul>
+<hr>
+<p></p><h2 id="01">#01 变量转换成整数</h2><br>在javascript中,把变量转换成整数是十分常见的操作,js原生提供的方法<code>parseInt</code>可以把字符串转换成整数.但是还有一个常见的方法是用<code>~~</code>操作符来将数字或者字符串转换成整数.例如:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'3.14'</span></div><div class="line"><span class="keyword">var</span> nStr = ~~str  <span class="comment">// nstr = 3</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> nStr)  <span class="comment">// number</span></div></pre></td></tr></table></figure><p></p>
+<p><code>~</code>是位操作符,按位取反.如果操作对象是字符串类型,首先把字符串类型转换成数字类型,由于<code>~</code>是对整数进行操作,所以把数字转换成整数后取反,然后再次取反,就相当于把字符串转换整数了. </p>
+<p>当然,这种方法对于数字也是有效的,这里相当于是把数字小数点后面的去掉取整的,和<code>Math.floor</code>方法效果相同.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> count = ~~<span class="number">3.14</span>   <span class="comment">// count = 3</span></div><div class="line"><span class="keyword">var</span> price = ~~<span class="number">-6.24</span>  <span class="comment">// price = -6</span></div></pre></td></tr></table></figure></p>
+<h3 id="bonus"><a href="#bonus" class="headerlink" title="bonus"></a>bonus</h3><p><code>~</code>按位取反符还可以用来模拟<code>includes</code>方法,在ES6中,字符串有一个<code>includes</code>方法来确定字符串中是否包括某个子字符串.一般我们为了达到这样的效果,会编写下面的代码:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'hello world'</span></div><div class="line"><span class="keyword">if</span>(str.indexOf(<span class="string">'world'</span>) &gt;= <span class="number">0</span>) &#123;</div><div class="line">  <span class="comment">// do something</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/* 或者 */</span></div><div class="line"><span class="keyword">if</span>(str.indexOf(<span class="string">'world'</span>) === <span class="number">-1</span>) &#123;</div><div class="line">  <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们可以采用下面的方法来达到相同的效果,用<code>~</code>操作符:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'hello world'</span></div><div class="line"><span class="keyword">if</span>(~str.indexOf(<span class="string">'world'</span>)) &#123;</div><div class="line">  <span class="comment">// do something</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/* 或者 */</span></div><div class="line"><span class="keyword">if</span>(!~strindexOf(<span class="string">'world'</span>)) &#123;</div><div class="line">  <span class="comment">// do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>~</code>操作符会按位取反,而-1在计算机中按位取反后是0,所以如果不包含子字符串,if语句将不会执行.同理,前面加上<code>!</code>就能表达不包含子字符串的效果.</p>
+<hr>
+<p></p><h2 id="02">#02 向数组中插入元素</h2><br>在js中,向数组中插入元素,一般想到的就是<br><code>Array.prototype.push</code>     末尾追加元素<br><code>Array.prototype.pop</code>      末尾移除元素<br><code>Array.prototype.unshift</code>  头部增加元素<br><code>Array.prototype.shift</code>    头部移除元素<br><code>Array.prototype.splice</code>   中间增加或移除元素<p></p>
+<p>除了这些之外,还有一些方法可以来增加数据的元素.</p>
+<h5 id="向数组尾部增加元素"><a href="#向数组尾部增加元素" class="headerlink" title="向数组尾部增加元素"></a>向数组尾部增加元素</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"></div><div class="line">arr.push(<span class="number">6</span>)</div><div class="line">arr[arr.length] = <span class="number">6</span> <span class="comment">// 43% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1</span></div></pre></td></tr></table></figure>
+<h5 id="向数组头部增加元素"><a href="#向数组头部增加元素" class="headerlink" title="向数组头部增加元素"></a>向数组头部增加元素</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"></div><div class="line">arr.unshift(<span class="number">0</span>)</div><div class="line">[<span class="number">0</span>].concat(arr) <span class="comment">// 98% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1</span></div></pre></td></tr></table></figure>
+<h5 id="向数组中间增加元素"><a href="#向数组中间增加元素" class="headerlink" title="向数组中间增加元素"></a>向数组中间增加元素</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> items = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>, <span class="string">'four'</span>]</div><div class="line">items.splice(items.length / <span class="number">2</span>, <span class="number">0</span>, <span class="string">'hello'</span>)</div></pre></td></tr></table></figure>
+<p>巧妙的使用这些技巧,能更好的提升你程序的性能.</p>
+<hr>
+<p></p><h2 id="03">#03 正确的清空对象</h2><br>我们在清空数组的时候,通常采用的方法如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'o'</span>]</div><div class="line"></div><div class="line"><span class="comment">// 清空数组</span></div><div class="line">arr = []</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(arr)  <span class="comment">// []</span></div></pre></td></tr></table></figure><p></p>
+<p>这样是可行的,不过还有另外一种更加高效,并且可靠的方式来清空数组:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'h'</span>, <span class="string">'e'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'o'</span>]</div><div class="line"></div><div class="line">arr.length = <span class="number">0</span>  <span class="comment">// 清空数组</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// []</span></div></pre></td></tr></table></figure></p>
+<p>采用第一种赋值新的空对象的话,原来的对象还是在内存中,如果有其他变量引用了这个数组,引用的变量并不会清空.值还是原来的数组:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="keyword">var</span> b = a</div><div class="line"></div><div class="line">a = []</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(a)  <span class="comment">// []</span></div><div class="line"><span class="built_in">console</span>.log(b)  <span class="comment">// [1, 2, 3]</span></div><div class="line"><span class="comment">/* length 方法清空 */</span></div><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="keyword">var</span> b = a</div><div class="line"></div><div class="line">a.length = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(a)  <span class="comment">// []</span></div><div class="line"><span class="built_in">console</span>.log(b)  <span class="comment">// []</span></div></pre></td></tr></table></figure></p>
+<p>所以,如果想清空被引用的数组的话,还是需要把原来的对象改成空对象的.同理,如果想清空对象的话:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">  <span class="attr">greet</span> : <span class="string">'hello'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line">obj = &#123;&#125;  <span class="comment">// 这样清空对象最简单,但是被引用的对象不会被清空</span></div><div class="line"></div><div class="line"><span class="comment">// 循环遍历删除对象键值</span></div><div class="line"><span class="keyword">for</span>(key <span class="keyword">in</span> obj) &#123;</div><div class="line">  <span class="keyword">delete</span> obj[key]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://marchen.com/blog/2016/01/19/jsTips/" data-id="cizjk3xhn00061kll6atc1767" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/chen844033231" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2016/03/04/flex/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          使用flex来布局界面
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/blog/2016/01/14/reactNative/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">在windows环境下搭建react-native(超详细教程)</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/03/04/flex/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/flex/flex.jpg
+)" alt="使用flex来布局界面" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/03/04/flex/" class="title">使用flex来布局界面</a></p>
+              <p class="item-date"><time datetime="2016-03-04T06:58:22.000Z" itemprop="datePublished">2016-03-04</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/19/jsTips/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/tips.jpg
+)" alt="Javascript Tips" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/01/19/jsTips/" class="title">Javascript Tips</a></p>
+              <p class="item-date"><time datetime="2016-01-19T02:24:55.000Z" itemprop="datePublished">2016-01-19</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/14/reactNative/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/reactNative.png
+)" alt="在windows环境下搭建react-native(超详细教程)" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2016/01/14/reactNative/" class="title">在windows环境下搭建react-native(超详细教程)</a></p>
+              <p class="item-date"><time datetime="2016-01-14T07:39:25.000Z" itemprop="datePublished">2016-01-14</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/08/webpack/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/webpack.jpg
+)" alt="webpack怎么用" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2015/12/08/webpack/" class="title">webpack怎么用</a></p>
+              <p class="item-date"><time datetime="2015-12-08T06:45:25.000Z" itemprop="datePublished">2015-12-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/02/location/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/location.jpg
+)" alt="导航高亮" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2015/12/02/location/" class="title">导航高亮</a></p>
+              <p class="item-date"><time datetime="2015-12-02T02:31:05.000Z" itemprop="datePublished">2015-12-02</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/">WEB</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/技巧/">技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/框架/">框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/特效/">特效</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/一辈子/">一辈子</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TED/">TED</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/">babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chartJS/">chartJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/flex/">flex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/">react</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-native/">react-native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/安卓/">安卓</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/导航/">导航</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标签/">标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/生命/">生命</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/部署/">部署</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog/tags/TED/" style="font-size: 10px;">TED</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/blog/tags/chartJS/" style="font-size: 10px;">chartJS</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/flex/" style="font-size: 10px;">flex</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/react/" style="font-size: 20px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/安卓/" style="font-size: 10px;">安卓</a> <a href="/blog/tags/导航/" style="font-size: 10px;">导航</a> <a href="/blog/tags/标签/" style="font-size: 10px;">标签</a> <a href="/blog/tags/生命/" style="font-size: 10px;">生命</a> <a href="/blog/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/blog/" class="logo"></a>
+        </h1>
+        <p>&copy; 2017 Marchen</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <script src="/blog/scrollLoading/jquery.scrollLoading.js"></script>
+  <script src="/blog/scrollLoading/main.js"></script>
+
+
+
+
+<script src="/blog/js/html-patch.js"></script>
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

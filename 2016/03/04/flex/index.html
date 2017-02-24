@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用flex来布局界面 | Marchen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="flex">
+  
+
+  <meta name="description" content="布局的发展以前布局采用table来布局网页,但是由于table布局需要加载完table的全部内容才能显示内容,同时由于table布局不是很灵活,所以人们发明了div+css来布局页面,这种布局的比table更加灵活,同时布局出来的页面也更好的好看,传统的div+css布局采用浮动来布局页面,这种方式沿用了很长的时间,随着响应式布局的流行,和页面布局的多样化,采用浮动布局慢慢浮现出问题,比如需要做">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用flex来布局界面">
+<meta property="og:url" content="http://marchen.com/2016/03/04/flex/index.html">
+<meta property="og:site_name" content="Marchen's Blog">
+<meta property="og:description" content="布局的发展以前布局采用table来布局网页,但是由于table布局需要加载完table的全部内容才能显示内容,同时由于table布局不是很灵活,所以人们发明了div+css来布局页面,这种布局的比table更加灵活,同时布局出来的页面也更好的好看,传统的div+css布局采用浮动来布局页面,这种方式沿用了很长的时间,随着响应式布局的流行,和页面布局的多样化,采用浮动布局慢慢浮现出问题,比如需要做">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/flex.jpg">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/model.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/1.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/2.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/3.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/4.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/5.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/6.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/7.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/8.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/9.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/10.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/11.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/12.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/13.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/14.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/15.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/16.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/17.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/18.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/19.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/20.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/21.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/22.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/23.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/24.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/25.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/26.png">
+<meta property="og:image" content="http://marchen.com/blog/css/images/flex/27.png">
+<meta property="og:updated_time" content="2017-02-24T08:20:11.412Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用flex来布局界面">
+<meta name="twitter:description" content="布局的发展以前布局采用table来布局网页,但是由于table布局需要加载完table的全部内容才能显示内容,同时由于table布局不是很灵活,所以人们发明了div+css来布局页面,这种布局的比table更加灵活,同时布局出来的页面也更好的好看,传统的div+css布局采用浮动来布局页面,这种方式沿用了很长的时间,随着响应式布局的流行,和页面布局的多样化,采用浮动布局慢慢浮现出问题,比如需要做">
+<meta name="twitter:image" content="http://marchen.com/blog/css/images/flex/flex.jpg">
+  
+  
+    <link rel="icon" href="/blog/favicon.png">
+  
+
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+    <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  
+  
+    <link rel="stylesheet" href="/blog/scrollLoading/style.css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/blog/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">Becoming a better Front Engineer</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/blog/blog">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/">WEB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/技巧/">技巧</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/框架/">框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/特效/">特效</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/一辈子/">一辈子</a></li></ul>
+                  
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://marchen.com"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/blog/categories/WEB/技巧/">技巧</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-flex" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      使用flex来布局界面
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/blog/2016/03/04/flex/" class="article-date">
+  <time datetime="2016-03-04T06:58:22.000Z" itemprop="datePublished">2016-03-04</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><img src="/blog/css/images/flex/flex.jpg" alt=""></p>
+<h2 id="布局的发展"><a href="#布局的发展" class="headerlink" title="布局的发展"></a>布局的发展</h2><p>以前布局采用table来布局网页,但是由于table布局需要加载完table的全部内容才能显示内容,同时由于table布局不是很灵活,所以人们发明了div+css来布局页面,这种布局的比table更加灵活,同时布局出来的页面也更好的好看,传统的div+css布局采用浮动来布局页面,这种方式沿用了很长的时间,随着响应式布局的流行,和页面布局的多样化,采用浮动布局慢慢浮现出问题,比如需要做许多的工作才能实现常见的效果,并且每次设置浮动后都需要清除浮动,这让布局这一简单但是无比重要的任务变得复杂.所以人们提出新的布局方式.flex布局.这种布局方式可以有更好的方式来控制子元素的位置.而且更加的灵活和强大.采用flex布局可以完成以往用css很难完成的布局或者不可能完成的布局.下面一起来看看flex布局的要点.</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>flex布局的模型就是容器有主轴和辅轴,默认的主轴沿着x方向,辅轴沿着y方向.所以子元素按照主轴方向放置.可以通过一些css属性来控制轴线上元素的位置.<br><img src="/blog/css/images/flex/model.png" alt=""></p>
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><p>在flex布局之前,可以想象着容器如果被定义为flex的话,他的直接子元素不管是块级元素还是内联元素,都是按照主轴线放置的,块级元素并不会换行.当元素放置完成,即可通过属性来控制容器内的布局方式.我们可以把容器内的直接子元素叫做项目.</p>
+<h2 id="简单的布局实例"><a href="#简单的布局实例" class="headerlink" title="简单的布局实例"></a>简单的布局实例</h2><h6 id="提示-由于笔者写文章的时候没有注意到分辨率过大-截的图片比较长-可以点击图片放大查看效果哦"><a href="#提示-由于笔者写文章的时候没有注意到分辨率过大-截的图片比较长-可以点击图片放大查看效果哦" class="headerlink" title="提示: 由于笔者写文章的时候没有注意到分辨率过大,截的图片比较长,可以点击图片放大查看效果哦"></a>提示: 由于笔者写文章的时候没有注意到分辨率过大,截的图片比较长,可以点击图片放大查看效果哦</h6><p>最简单的布局是,1行4列,每一列宽度都相等.<br><img src="/blog/css/images/flex/1.png" alt=""><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-item"</span>&gt;</span>item<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-item"</span>&gt;</span>item<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-item"</span>&gt;</span>item<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flex-item"</span>&gt;</span>item<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.flex-item</span> &#123;</div><div class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">background-color</span>: red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="容器可用的属性"><a href="#容器可用的属性" class="headerlink" title="容器可用的属性"></a>容器可用的属性</h2><p>容器可以使用的属性包括:</p>
+<ul>
+<li>flex-direction: row | column | row-reverse | column-reverse;</li>
+<li>flex-wrap: nowrap | wrap | wrap-reverse;</li>
+<li>flex-flow: [flex-direction] [flex-wrap];</li>
+<li>justify-content: flex-start | flex-end | center | space-between | space-around;</li>
+<li>align-item: flex-start | flex-end | center | stretch;</li>
+<li>align-content: flex-start | flex-end | center | space-between | space-around;</li>
+</ul>
+<h3 id="flex-direction属性"><a href="#flex-direction属性" class="headerlink" title="flex-direction属性"></a>flex-direction属性</h3><p>flex-direction属性用来定义主轴的方向,默认的主轴方向是从左到右.元素也是按照从左到右的方式排列的.<br><img src="/blog/css/images/flex/2.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: row;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>row值是水平排列,然后依次往后.</p>
+<hr>
+<p><img src="/blog/css/images/flex/3.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: column;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>column值是垂直排列,依次往后.</p>
+<hr>
+<p><img src="/blog/css/images/flex/4.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: row-reverse;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>row-reverse值是水平排列,但是从右往左依次排列.</p>
+<hr>
+<p><img src="/blog/css/images/flex/5.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-direction</span>: column-reverse;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>column-reverse值是垂直排列,但是从下到上依次排列.</p>
+<h3 id="flex-wrap属性"><a href="#flex-wrap属性" class="headerlink" title="flex-wrap属性"></a>flex-wrap属性</h3><p>flex-wrap是用来定义容器内元素是否换行.如果容器内元素超过容器边界,是否需要把元素换到下一行.默认是不换行.</p>
+<p><img src="/blog/css/images/flex/6.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-wrap</span>: nowrap;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>nowrap值是默认的值,也就是超过边界不会换到下一行.从上面的效果还可以看到,我定义的宽度默认都缩小了.如果容器不换行.容器内元素超过边界会等比缩小.</p>
+<hr>
+<p><img src="/blog/css/images/flex/7.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-wrap</span>: wrap;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>wrap值是让元素换行,这个效果可以产生多行.align-content属性也只对换行的容器才起效果.</p>
+<hr>
+<p><img src="/blog/css/images/flex/8.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-wrap</span>: wrap-reverse;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>wrap-reverse值是换行会从下往上叠加.而wrap是从上往下叠加的.</p>
+<h3 id="flex-flow属性"><a href="#flex-flow属性" class="headerlink" title="flex-flow属性"></a>flex-flow属性</h3><p>flex-flow属性是flex-direction和flex-wrap的简写.通常我们采用flex-flow来定义上面2个属性.</p>
+<p><img src="/blog/css/images/flex/9.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-flow</span>: row wrap;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="justify-content属性"><a href="#justify-content属性" class="headerlink" title="justify-content属性"></a>justify-content属性</h3><p>justify-content属性用来定义元素的位置.可以理解为沿着主轴的对齐方式.</p>
+<p><img src="/blog/css/images/flex/10.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-flow</span>: row nowrap;</div><div class="line">  <span class="attribute">justify-content</span>: flex-start;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>flex-start值沿着主轴开始的地方放置.</p>
+<hr>
+<p><img src="/blog/css/images/flex/11.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-flow</span>: row nowrap;</div><div class="line">  <span class="attribute">justify-content</span>: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>flex-end值沿着主轴结束的地方放置.</p>
+<hr>
+<p><img src="/blog/css/images/flex/12.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-flow</span>: row nowrap;</div><div class="line">  <span class="attribute">justify-content</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>center值把内容放置到主轴中心.</p>
+<hr>
+<p><img src="/blog/css/images/flex/13.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-flow</span>: row nowrap;</div><div class="line">  <span class="attribute">justify-content</span>: space-between;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>space-between值是两端对齐.两端的元素不留空白.</p>
+<hr>
+<p><img src="/blog/css/images/flex/14.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">flex-flow</span>: row nowrap;</div><div class="line">  <span class="attribute">justify-content</span>: space-around;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>space-around值会将两端留有空白,然后平均分布.</p>
+<h3 id="align-item属性"><a href="#align-item属性" class="headerlink" title="align-item属性"></a>align-item属性</h3><p>align-item属性定义元素辅轴对齐方式.</p>
+<p><img src="/blog/css/images/flex/15.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">align-items</span>: flex-start;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>flex-start从辅轴开始处对齐元素.</p>
+<hr>
+<p><img src="/blog/css/images/flex/16.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">align-items</span>: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>flex-end从辅轴结束处对齐元素.</p>
+<hr>
+<p><img src="/blog/css/images/flex/17.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">align-items</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>center从辅轴中心处对齐元素.</p>
+<hr>
+<p><img src="/blog/css/images/flex/18.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">  <span class="attribute">align-items</span>: stretch;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>stretch拉伸元素和容器一样高.</p>
+<h3 id="align-content属性"><a href="#align-content属性" class="headerlink" title="align-content属性"></a>align-content属性</h3><p>align-content属性定义多行内容对齐方式,这个属性只有当容器多行时才起作用,也就是必须设置flex-wrap为wrap或者wrap-reverse才有效.</p>
+<p><img src="/blog/css/images/flex/19.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">flex-wrap</span>: wrap;</div><div class="line">  <span class="attribute">align-items</span>: flex-start;</div><div class="line">  <span class="attribute">align-content</span>: flex-start;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>flex-start值让多行内容对齐到辅轴开始处.</p>
+<hr>
+<p><img src="/blog/css/images/flex/20.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">flex-wrap</span>: wrap;</div><div class="line">  <span class="attribute">align-items</span>: flex-start;</div><div class="line">  <span class="attribute">align-content</span>: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>flex-end值让多行内容对齐到辅轴结束处.</p>
+<hr>
+<p><img src="/blog/css/images/flex/21.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">flex-wrap</span>: wrap;</div><div class="line">  <span class="attribute">align-items</span>: flex-start;</div><div class="line">  <span class="attribute">align-content</span>: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>center值让多行内容沿着辅轴居中.</p>
+<hr>
+<p><img src="/blog/css/images/flex/22.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">flex-wrap</span>: wrap;</div><div class="line">  <span class="attribute">align-items</span>: flex-start;</div><div class="line">  <span class="attribute">align-content</span>: space-between;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>space-between值让多行内容两端对齐.</p>
+<hr>
+<p><img src="/blog/css/images/flex/23.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">flex-wrap</span>: wrap;</div><div class="line">  <span class="attribute">align-items</span>: flex-start;</div><div class="line">  <span class="attribute">align-content</span>: space-around;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>space-around值让多行元素两端对齐,但是两端会有空白.</p>
+<h2 id="项目元素可用的属性"><a href="#项目元素可用的属性" class="headerlink" title="项目元素可用的属性"></a>项目元素可用的属性</h2><ul>
+<li>order: integer;</li>
+<li>flex-grow: interget;</li>
+<li>flex-shrink: interget;</li>
+<li>flex-basis: length;</li>
+<li>flex: [flex-grow] [flow-shrink] [flex-basis];</li>
+<li>align-self: flex-start | flex-end | center | stretch;</li>
+</ul>
+<h3 id="order属性"><a href="#order属性" class="headerlink" title="order属性"></a>order属性</h3><p>order属性定义项目的排列顺序.数值越小,排列越靠前,默认为0,可以为负数.</p>
+<p><img src="/blog/css/images/flex/24.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-item</span><span class="selector-pseudo">:nth-child(1)</span> &#123;</div><div class="line">  <span class="attribute">order</span>: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="flex-grow属性"><a href="#flex-grow属性" class="headerlink" title="flex-grow属性"></a>flex-grow属性</h3><p>flex-grow属性定义项目的放大比例,默认为0,即如果存在剩余空间,也不放大.</p>
+<p><img src="/blog/css/images/flex/25.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-item</span><span class="selector-pseudo">:nth-child(1)</span> &#123;</div><div class="line">  <span class="attribute">flex-grow</span>: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果有多个定义flex-grow的项目,那么剩余空间会按照权重比例分配.</p>
+<h3 id="flex-shrink属性"><a href="#flex-shrink属性" class="headerlink" title="flex-shrink属性"></a>flex-shrink属性</h3><p>flex-shrink属性定义了项目的缩小比例,默认为1,即如果空间不足,该项目将缩小.</p>
+<p><img src="/blog/css/images/flex/26.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-item</span> &#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">2000px</span>;</div><div class="line">  <span class="attribute">flex-shrink</span>: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果多个项目定义此属性,则会按照权重比例分配缩小大小.</p>
+<h3 id="flex-basis属性"><a href="#flex-basis属性" class="headerlink" title="flex-basis属性"></a>flex-basis属性</h3><p>flex-basis属性定义了在分配多余空间之前,项目占据的主轴空间（main size).浏览器根据这个属性,计算主轴是否有多余空间.它的默认值为auto,即项目的本来大小.<br>如果设置了长度,就会按照长度来分配项目的占据空间.</p>
+<h3 id="flex属性"><a href="#flex属性" class="headerlink" title="flex属性"></a>flex属性</h3><p>flex属性是上面3个属性的缩写.<br>flex: [flex-grow] [flex-shrink] [flex-basis];<br>我们才采用的写法是:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item</span> &#123;</div><div class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;  <span class="comment">/* 省略后面的2个数值 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="align-self属性"><a href="#align-self属性" class="headerlink" title="align-self属性"></a>align-self属性</h3><p>align-self属性允许单个项目有与其他项目不一样的对齐方式,可覆盖align-items属性.默认值为auto,表示继承父元素的align-items属性,如果没有父元素,则等同于stretch.</p>
+<p><img src="/blog/css/images/flex/27.png" alt=""><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flex-container</span> &#123;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">align-items</span>: flex-start;</div><div class="line">  <span class="attribute">background-color</span>: green;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.flex-item</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">background-color</span>: red;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.flex-item</span><span class="selector-pseudo">:nth-child(1)</span> &#123;</div><div class="line">  <span class="attribute">align-self</span>: flex-end;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.flex-item</span><span class="selector-pseudo">:nth-child(2)</span> &#123;</div><div class="line">  <span class="attribute">align-self</span>: center;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.flex-item</span><span class="selector-pseudo">:nth-child(3)</span> &#123;</div><div class="line">  <span class="attribute">align-self</span>: stretch;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到通过设置项目的align-self可以脱离容器定义的辅轴对齐方式,十分灵活.</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>flex布局十分灵活,对于以前用css布局十分难的案例,采用flex布局可以分分钟搞定.但是flex的兼容性比较差,不过目前现代浏览器都支持flex布局了.随着flex的普及和浏览器的发展,flex必定成为移动端的布局好方式.</p>
+<p>推荐一个项目,用flex可以实现的布局案例. <a href="https://github.com/philipwalton/solved-by-flexbox" target="_blank" rel="external">https://github.com/philipwalton/solved-by-flexbox</a></p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://marchen.com/blog/2016/03/04/flex/" data-id="cizjk3xgo00001kllige8y9vi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/flex/">flex</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/chen844033231" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2016/01/19/jsTips/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">Javascript Tips</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/03/04/flex/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/flex/flex.jpg
+)" alt="使用flex来布局界面" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/03/04/flex/" class="title">使用flex来布局界面</a></p>
+              <p class="item-date"><time datetime="2016-03-04T06:58:22.000Z" itemprop="datePublished">2016-03-04</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/19/jsTips/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/tips.jpg
+)" alt="Javascript Tips" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/01/19/jsTips/" class="title">Javascript Tips</a></p>
+              <p class="item-date"><time datetime="2016-01-19T02:24:55.000Z" itemprop="datePublished">2016-01-19</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/14/reactNative/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/reactNative.png
+)" alt="在windows环境下搭建react-native(超详细教程)" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2016/01/14/reactNative/" class="title">在windows环境下搭建react-native(超详细教程)</a></p>
+              <p class="item-date"><time datetime="2016-01-14T07:39:25.000Z" itemprop="datePublished">2016-01-14</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/08/webpack/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/webpack.jpg
+)" alt="webpack怎么用" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2015/12/08/webpack/" class="title">webpack怎么用</a></p>
+              <p class="item-date"><time datetime="2015-12-08T06:45:25.000Z" itemprop="datePublished">2015-12-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/02/location/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/location.jpg
+)" alt="导航高亮" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2015/12/02/location/" class="title">导航高亮</a></p>
+              <p class="item-date"><time datetime="2015-12-02T02:31:05.000Z" itemprop="datePublished">2015-12-02</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/">WEB</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/技巧/">技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/框架/">框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/特效/">特效</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/一辈子/">一辈子</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TED/">TED</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/">babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chartJS/">chartJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/flex/">flex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/">react</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-native/">react-native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/安卓/">安卓</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/导航/">导航</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标签/">标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/生命/">生命</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/部署/">部署</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog/tags/TED/" style="font-size: 10px;">TED</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/blog/tags/chartJS/" style="font-size: 10px;">chartJS</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/flex/" style="font-size: 10px;">flex</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/react/" style="font-size: 20px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/安卓/" style="font-size: 10px;">安卓</a> <a href="/blog/tags/导航/" style="font-size: 10px;">导航</a> <a href="/blog/tags/标签/" style="font-size: 10px;">标签</a> <a href="/blog/tags/生命/" style="font-size: 10px;">生命</a> <a href="/blog/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/blog/" class="logo"></a>
+        </h1>
+        <p>&copy; 2017 Marchen</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <script src="/blog/scrollLoading/jquery.scrollLoading.js"></script>
+  <script src="/blog/scrollLoading/main.js"></script>
+
+
+
+
+<script src="/blog/js/html-patch.js"></script>
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用ES6来写React组件 | Marchen&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="react,es6,babel">
+  
+
+  <meta name="description" content="React是facebook开源的一款前端UI库,主要特性是采用虚拟dom,和单向数据流来构建应用程序.
+React不是一个完整的框架,它仅仅相当于MVC中的V,用React来构建应用程序,可以很方便的构建动态页面,因为它在内存中模拟浏览器的dom,然后diff判断需要更新的最小dom节点,而这些过程都是React内置完成的,效率相当高效,你不必手动操作dom了. 随着React的流行,一系列R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用ES6来写React组件">
+<meta property="og:url" content="http://marchen.com/2015/11/25/reactES6/index.html">
+<meta property="og:site_name" content="Marchen's Blog">
+<meta property="og:description" content="React是facebook开源的一款前端UI库,主要特性是采用虚拟dom,和单向数据流来构建应用程序.
+React不是一个完整的框架,它仅仅相当于MVC中的V,用React来构建应用程序,可以很方便的构建动态页面,因为它在内存中模拟浏览器的dom,然后diff判断需要更新的最小dom节点,而这些过程都是React内置完成的,效率相当高效,你不必手动操作dom了. 随着React的流行,一系列R">
+<meta property="og:image" content="http://marchen.com/blog/css/images/react.jpg">
+<meta property="og:updated_time" content="2017-02-24T08:20:11.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用ES6来写React组件">
+<meta name="twitter:description" content="React是facebook开源的一款前端UI库,主要特性是采用虚拟dom,和单向数据流来构建应用程序.
+React不是一个完整的框架,它仅仅相当于MVC中的V,用React来构建应用程序,可以很方便的构建动态页面,因为它在内存中模拟浏览器的dom,然后diff判断需要更新的最小dom节点,而这些过程都是React内置完成的,效率相当高效,你不必手动操作dom了. 随着React的流行,一系列R">
+<meta name="twitter:image" content="http://marchen.com/blog/css/images/react.jpg">
+  
+  
+    <link rel="icon" href="/blog/favicon.png">
+  
+
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+    <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  
+  
+    <link rel="stylesheet" href="/blog/scrollLoading/style.css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/blog/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">Becoming a better Front Engineer</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/blog/blog">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/">WEB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/HTML/">HTML</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/技巧/">技巧</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/框架/">框架</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/WEB/特效/">特效</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/一辈子/">一辈子</a></li></ul>
+                  
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://marchen.com"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/blog/categories/WEB/框架/">框架</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-reactES6" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      用ES6来写React组件
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/blog/2015/11/25/reactES6/" class="article-date">
+  <time datetime="2015-11-25T09:31:54.000Z" itemprop="datePublished">2015-11-25</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><img src="/blog/css/images/react.jpg" alt=""></p>
+<p>React是facebook开源的一款前端UI库,主要特性是采用虚拟dom,和单向数据流来构建应用程序.</p>
+<p>React不是一个完整的框架,它仅仅相当于MVC中的V,用React来构建应用程序,可以很方便的构建动态页面,因为它在内存中模拟浏览器的dom,然后diff判断需要更新的最小dom节点,而这些过程都是React内置完成的,效率相当高效,你不必手动操作dom了. 随着React的流行,一系列React的生态圈也建立起来.</p>
+<ul>
+<li><a href="http://facebook.github.io/react/index.html" target="_blank" rel="external">React</a> React官网</li>
+<li><a href="http://facebook.github.io/react-native/" target="_blank" rel="external">React Native</a> 采用web技术来开发ios和android应用</li>
+<li><a href="http://redux.js.org/" target="_blank" rel="external">redux</a> 单向数据流flux架构</li>
+<li><a href="https://github.com/enaqx/awesome-react" target="_blank" rel="external">awesome-react</a> 一系列和react相关的技术</li>
+</ul>
+<p>React提出组件化开发应用程序的思想,其实组件化开发是很久就提出来的,不过随着nodejs和js语法不断完善和发展,今年才被正式提出来,而React库的基本开发模式也是组件化开发.虽然开始的时候会有一点点麻烦,可是随着开发的进行,会发现组件化开发是多么的明智,而多做的而外工作也是值得的.</p>
+<p>我下面的内容会假定你已经大致了解过React,并且对组件化开发有一定的基础.否则可以去看下react的官网.下面主要是讲解react在es6中的语法,如何定义react组件和组件内部的方法.</p>
+<p>ES6在2015年正式定稿,为js添加了很多新的特性,废弃一部分糟粕的js语法.不过现在主流客户端(浏览器)对es6的支持度不是很好,nodejs对es6的支持也不是很全部.所以想用es6的语法来写客户端的程序,就需要把es6的语法转换成es5的语法,这样浏览器就能执行了.而比较著名的编译器就是<a href="http://babeljs.io/" target="_blank" rel="external">babel</a>和<a href="https://github.com/google/traceur-compiler" target="_blank" rel="external">traceur</a>.我们这里选用babel主要是支持编译react库的语法.(react官方指定编译器,你懂的)</p>
+<p>采用es6来写react组件是一件很爽的事情,我已经忘记大部分react原生的方法了.用es6来写react组件更加的容易.</p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>每个react的组件都是一个对象,而react专门写了一个组件类来让es6语法可以继承这个类.从而创建新的组件.这个类就是<code>Component</code>,这个组件完整路径是<code>React.Component</code>.<br>我们只需要继承这个类,就能创建出react组件了.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">	render() &#123;</div><div class="line">		<span class="keyword">return</span>(</div><div class="line">			<span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span> hello boy! <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">		);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>组件内部可以写很多方法,有react内置的生命周期方法,还可以自定义一些方法.如果采用es5的方法来写:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES5的定义组件方法</span></div><div class="line"><span class="keyword">var</span> Hello = React.createClass(&#123;</div><div class="line">	<span class="attr">componentDidMount</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;,</div><div class="line">	<span class="attr">render</span>:	<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES6定义组件方法</span></div><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">	component() &#123;</div><div class="line">		...</div><div class="line">	&#125;</div><div class="line">	render() &#123;</div><div class="line">		...</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在ES5中如果想要定义组件的初始化state,需要使用getInitialState,而ES6采用constructor来定义初始化state.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES5方式定义初始化state</span></div><div class="line"><span class="keyword">var</span> Hello = React.createClass(&#123;</div><div class="line">	<span class="attr">getInitialState</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;...&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES6方式定义初始化state</span></div><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">	<span class="keyword">constructor</span>(props) &#123;</div><div class="line">		<span class="keyword">super</span>(props);  <span class="comment">// 这个一定要添加</span></div><div class="line">		<span class="keyword">this</span>.state = &#123;  <span class="comment">// 给state赋初始值</span></div><div class="line">			greet : <span class="string">'hello'</span></div><div class="line">		&#125;</div><div class="line">		...</div><div class="line">	&#125;</div><div class="line">	render() &#123;</div><div class="line">		...</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ES5中定义初始化props需要使用getDefaultProps,定义propTypes需要propTypes方法,而ES6采用静态static方法.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES5定义props和propTypes</span></div><div class="line"><span class="keyword">var</span> Video = React.createClass(&#123;</div><div class="line">  <span class="attr">getDefaultProps</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">autoPlay</span>: <span class="literal">false</span>,</div><div class="line">      <span class="attr">maxLoops</span>: <span class="number">10</span>,</div><div class="line">    &#125;;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">getInitialState</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">loopsRemaining</span>: <span class="keyword">this</span>.props.maxLoops,</div><div class="line">    &#125;;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">propTypes</span>: &#123;</div><div class="line">    <span class="attr">autoPlay</span>: React.PropTypes.bool.isRequired,</div><div class="line">    <span class="attr">maxLoops</span>: React.PropTypes.number.isRequired,</div><div class="line">    <span class="attr">posterFrameSrc</span>: React.PropTypes.string.isRequired,</div><div class="line">    <span class="attr">videoSrc</span>: React.PropTypes.string.isRequired,</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES6方式定义初始化props和propTypes</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Video</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">  	<span class="keyword">super</span>(props)</div><div class="line">  	<span class="keyword">this</span>.state = &#123;</div><div class="line">    	<span class="attr">loopsRemaining</span>: <span class="keyword">this</span>.props.maxLoops,</div><div class="line">  	&#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">static</span> defaultProps = &#123;</div><div class="line">    <span class="attr">autoPlay</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">maxLoops</span>: <span class="number">10</span>,</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">static</span> propTypes = &#123;</div><div class="line">    <span class="attr">autoPlay</span>: React.PropTypes.bool.isRequired,</div><div class="line">    <span class="attr">maxLoops</span>: React.PropTypes.number.isRequired,</div><div class="line">    <span class="attr">posterFrameSrc</span>: React.PropTypes.string.isRequired,</div><div class="line">    <span class="attr">videoSrc</span>: React.PropTypes.string.isRequired,</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的需要注意的是,babel6默认是不转换任何代码的,所以我们会加上babel6 preset.不过static属性是不包含在react包里面的.所以需要添加一个插件.整体的<code>.babelrc</code>文件看起来是这样:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">presets</span>: [<span class="string">'react'</span>, <span class="string">'stage-0'</span>, <span class="string">'es2015'</span>],</div><div class="line">	<span class="attr">plugins</span>: [<span class="string">"transform-class-properties"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>在ES5的定义中,因为createClass函数绑定了this到组件的实例,所以在定义组件的内部可以直接使用this来调用组件实例.而ES6由于没有绑定this到组件的实例,所以需要手动绑定this到组件的方法.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES5方法,内部的this绑定到了组件实例上</span></div><div class="line"><span class="keyword">var</span> Hello = React.createClass(&#123;</div><div class="line">	<span class="attr">greet</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">this</span>.state = &#123; ... &#125;</div><div class="line">	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES6手动绑定this</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">	contructor(props) &#123;</div><div class="line">		<span class="keyword">super</span>(props)</div><div class="line">		<span class="keyword">this</span>.greet = <span class="keyword">this</span>.greet.bind(<span class="keyword">this</span>)</div><div class="line">	&#125;</div><div class="line">	greet() &#123;</div><div class="line">		<span class="keyword">this</span>.state = &#123; ... &#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看起来这样手动绑定this关键字很麻烦,不要注意的是,组件的方法,比如componentDidMount,getInitialState这些方法是组件自己调用的所有this指的是组件实例,不需要绑定,如果不是这些方法,而是一些dom事件的回调函数的话,this的值就是dom节点,不是组件的实例了,也就不能写this.state这样的语句了.</p>
+<p>不过好消息是可以采用箭头函数来定义组件的方法,因为箭头函数会自动绑定this(实际上babel转化成es5代码而已).就能不用手动绑定那么麻烦啦.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES6自动绑定this (!!!!!!!!经测试,没卵用,会报this错误.知道的同学请告知我下)</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="comment">// 注意这里的写法</span></div><div class="line">	greet = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">		<span class="keyword">this</span>.state = &#123; ... &#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="动态属性名称和模板字符串"><a href="#动态属性名称和模板字符串" class="headerlink" title="动态属性名称和模板字符串"></a>动态属性名称和模板字符串</h2><p>ES6支持动态的属性名称.还支持模板字符串,以前用es5连接字符串和变量很麻烦,需要使用+号来间接,如果变量比较多了,看起来就很乱.而ES6支持的模板字符串可以很好的解决这一问题.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES6模板字符串</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Form</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  onChange(inputName, e) &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;</div><div class="line">      [<span class="string">`<span class="subst">$&#123;inputName&#125;</span>Value`</span>]: e.target.value,</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="解构赋值和分解属性"><a href="#解构赋值和分解属性" class="headerlink" title="解构赋值和分解属性"></a>解构赋值和分解属性</h2><p>我们可以用解构复制来得到你想要的组件属性.然后用分解属性的方法来往下面传播属性,采用这样的方式可以提取出props中的UI变量和数据.从而控制往下面传播的值是什么:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ES6</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoloadingPostsGrid</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">var</span> &#123;</div><div class="line">      className,</div><div class="line">      ...others,  <span class="comment">// contains all properties of this.props except for className</span></div><div class="line">    &#125; = <span class="keyword">this</span>.props;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;className&#125;</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">PostsGrid</span> &#123;<span class="attr">...others</span>&#125; /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.handleLoadMoreClick&#125;</span>&gt;</span>Load more<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>多使用ES6的新特性,可以更好的编写react组件. 不过ES6不支持mixins,幸运的是可以采用插件让es6支持mixins.不过我们可以采用class继承的方式,把mixin写出基础的组件,然后继承这个组件就可以了.</p>
+<p>希望这篇文章能很好的帮助了解到如何用ES6语法来写React组件.</p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://marchen.com/blog/2015/11/25/reactES6/" data-id="cizjk3xht000b1kllb6ur63le" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/babel/">babel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/es6/">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/react/">react</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/chen844033231" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2015/12/02/location/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <p class="article-nav-title">
+        
+          导航高亮
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/blog/2015/11/23/canvasCPU/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">CPU踩点图</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/03/04/flex/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/flex/flex.jpg
+)" alt="使用flex来布局界面" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/03/04/flex/" class="title">使用flex来布局界面</a></p>
+              <p class="item-date"><time datetime="2016-03-04T06:58:22.000Z" itemprop="datePublished">2016-03-04</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/19/jsTips/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/tips.jpg
+)" alt="Javascript Tips" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2016/01/19/jsTips/" class="title">Javascript Tips</a></p>
+              <p class="item-date"><time datetime="2016-01-19T02:24:55.000Z" itemprop="datePublished">2016-01-19</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2016/01/14/reactNative/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/reactNative.png
+)" alt="在windows环境下搭建react-native(超详细教程)" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2016/01/14/reactNative/" class="title">在windows环境下搭建react-native(超详细教程)</a></p>
+              <p class="item-date"><time datetime="2016-01-14T07:39:25.000Z" itemprop="datePublished">2016-01-14</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/08/webpack/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/webpack.jpg
+)" alt="webpack怎么用" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
+              <p class="item-title"><a href="/blog/2015/12/08/webpack/" class="title">webpack怎么用</a></p>
+              <p class="item-date"><time datetime="2015-12-08T06:45:25.000Z" itemprop="datePublished">2015-12-08</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/blog/2015/12/02/location/" class="thumbnail">
+  
+    <span style="background-image:url(/blog/css/images/location.jpg
+)" alt="导航高亮" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
+              <p class="item-title"><a href="/blog/2015/12/02/location/" class="title">导航高亮</a></p>
+              <p class="item-date"><time datetime="2015-12-02T02:31:05.000Z" itemprop="datePublished">2015-12-02</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/">WEB</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/HTML/">HTML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/技巧/">技巧</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/框架/">框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/WEB/特效/">特效</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/一辈子/">一辈子</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">一月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">十一月 2015</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/TED/">TED</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/babel/">babel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/chartJS/">chartJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/es6/">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/flex/">flex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react/">react</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/react-native/">react-native</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/安卓/">安卓</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/导航/">导航</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/标签/">标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/生命/">生命</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/部署/">部署</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/blog/tags/TED/" style="font-size: 10px;">TED</a> <a href="/blog/tags/babel/" style="font-size: 10px;">babel</a> <a href="/blog/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/blog/tags/chartJS/" style="font-size: 10px;">chartJS</a> <a href="/blog/tags/es6/" style="font-size: 10px;">es6</a> <a href="/blog/tags/flex/" style="font-size: 10px;">flex</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/react/" style="font-size: 20px;">react</a> <a href="/blog/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/blog/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/blog/tags/安卓/" style="font-size: 10px;">安卓</a> <a href="/blog/tags/导航/" style="font-size: 10px;">导航</a> <a href="/blog/tags/标签/" style="font-size: 10px;">标签</a> <a href="/blog/tags/生命/" style="font-size: 10px;">生命</a> <a href="/blog/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/blog/" class="logo"></a>
+        </h1>
+        <p>&copy; 2017 Marchen</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <script src="/blog/scrollLoading/jquery.scrollLoading.js"></script>
+  <script src="/blog/scrollLoading/main.js"></script>
+
+
+
+
+<script src="/blog/js/html-patch.js"></script>
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>
