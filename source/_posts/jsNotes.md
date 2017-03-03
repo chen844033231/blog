@@ -76,3 +76,116 @@ Promise.resolve().then(() => {
 // 2
 // 1
 ```
+
+5. 自定义事件(观察者模式)实现原理
+```js
+/**
+ * 自定义事件
+ */
+
+// 扩展编码 1. 事件冒泡(采用原型链)
+
+function Event() {
+    this.eventStack = {};
+    this.parent = null;
+}
+
+// 增加事件
+Event.prototype.on = function (type, fn) {
+    if (typeof type === 'string' && typeof fn === 'function') {
+        if (!this.eventStack[type]) {
+            this.eventStack[type] = [fn];
+        } else {
+            this.eventStack[type].push(fn);
+        }
+    }
+    return this;
+}
+
+// 移除事件
+Event.prototype.off = function (type, fn) {
+    // 移除所有事件
+    if (typeof type === 'undefined' && typeof fn === 'undefined') {
+        this.eventStack = {};
+    } else if (typeof type === 'string' && typeof fn === 'undefined') {
+        delete this.eventStack[type];
+    } else if (typeof type === 'string' && typeof fn === 'function') {
+        if (this.eventStack[type]) {
+            this.eventStack[type] = this.eventStack[type].filter(value => value !== fn);
+        }
+    }
+    return this;
+}
+
+// 触发事件
+Event.prototype.dispatch = function (type, ...argu) {
+    if (this.eventStack[type]) {
+        this.eventStack[type].forEach(fn => {
+            fn.apply(this, argu);
+        });
+        let parentObj = this.parent;
+        while (parentObj) {
+            parentObj.dispatchOwn(type);
+            parentObj = parentObj.parent;
+        }
+    }
+    return this;
+}
+
+// 触发自己的事件
+Event.prototype.dispatchOwn = function (type, ...argu) {
+    if (this.eventStack[type]) {
+        this.eventStack[type].forEach(fn => {
+            fn.apply(this, argu);
+        });
+    }
+    return this;
+}
+
+// 绑定父级事件
+Event.prototype.bindParent = function (parentObj) {
+    if (typeof parentObj === 'object') {
+        this.parent = parentObj;
+    }
+}
+
+// 测试
+const event = new Event();
+const parentEvent = new Event();
+const grandEvent = new Event();
+
+event.bindParent(parentEvent);
+parentEvent.bindParent(grandEvent);
+
+const clickEvent1 = function () {
+    console.log('you click me 1')
+}
+
+parentEvent.on('click', function() {
+    console.log('you click parentEvent');
+});
+
+grandEvent.on('click', function() {
+    console.log('you click grandEvent');
+});
+
+event.on('click', clickEvent1)
+    .on('click', function (a, b) {
+        console.log(a);
+        console.log(b);
+        console.log('you click me 2');
+        console.log(this);
+    });
+
+event.on('move', function () {
+    console.log('you move me')
+});
+
+event.dispatch('click')
+
+
+event.off('click', clickEvent1);
+
+event.dispatch('move');
+event.dispatch('click', 1, 2);
+```
