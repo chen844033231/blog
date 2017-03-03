@@ -56,3 +56,15 @@ tags:
 11. 寄生组合式继承.子类通过构造函数中的call来调用父类的构造函数从而让子类拥有自己的和父类相同的属性.通过新建一个父类构造函数的新对象,改变新对象的constructor来得到子类的原型对象
 
 # 函数表达式
+1. 递归函数是通过自身调用自己,记得要有跳出的条件
+2. 匿名函数和闭包不是一个概念,匿名函数是指的一个没有名字的函数,闭包指的是可以访问其他函数作用域的函数(从而让垃圾回收机制在函数被调用后还保留)
+3. (obj.getName)() 和 obj.getName()  一样, (obj.getName = obj.getName)() 这样是单独调用的函数
+4. 私有变量和静态私有变量的定义方法
+
+# BOM & DOM
+1. 采用能力检测而不是客户端检测机制
+2. documentFragment类型
+3. querySelector 和 querySelectorAll 和 getElementsByClassName
+4. classList 的四个方法 add, remove, toggle, contains
+5. scrollIntoView方法
+6. 事件冒泡和事件捕获
