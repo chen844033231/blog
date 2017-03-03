@@ -3,19 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015/12 | Marchen&#39;s Blog</title>
+  <title>Javascript Notes | Marchen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="javascript">
+  
 
-  <meta name="description" content="About FE about life">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Marchen's Blog">
-<meta property="og:url" content="http://marchen.com/archives/2015/12/index.html">
+  <meta name="description" content="这里主要记录个人忽略的知识点:
+
+node.js的require是引用传值的,也就是说,改变引用模块的值,也会改变引用的值, 多次引用同一个模块,只会拿到模块中的值, 不会重新运行模块
+1234567891011121314151617181920212223// a.jsconst b = require(&apos;./b&apos;)// &amp;#123; name: &apos;b&apos; &amp;#125;console.log(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript Notes">
+<meta property="og:url" content="http://marchen.com/2017/03/12/jsNotes/index.html">
 <meta property="og:site_name" content="Marchen's Blog">
-<meta property="og:description" content="About FE about life">
+<meta property="og:description" content="这里主要记录个人忽略的知识点:
+
+node.js的require是引用传值的,也就是说,改变引用模块的值,也会改变引用的值, 多次引用同一个模块,只会拿到模块中的值, 不会重新运行模块
+1234567891011121314151617181920212223// a.jsconst b = require(&apos;./b&apos;)// &amp;#123; name: &apos;b&apos; &amp;#125;console.log(">
+<meta property="og:image" content="http://marchen.com/blog/css/images/tips.jpg">
+<meta property="og:updated_time" content="2017-03-02T03:10:31.562Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Marchen's Blog">
-<meta name="twitter:description" content="About FE about life">
+<meta name="twitter:title" content="Javascript Notes">
+<meta name="twitter:description" content="这里主要记录个人忽略的知识点:
+
+node.js的require是引用传值的,也就是说,改变引用模块的值,也会改变引用的值, 多次引用同一个模块,只会拿到模块中的值, 不会重新运行模块
+1234567891011121314151617181920212223// a.jsconst b = require(&apos;./b&apos;)// &amp;#123; name: &apos;b&apos; &amp;#125;console.log(">
+<meta name="twitter:image" content="http://marchen.com/blog/css/images/tips.jpg">
   
   
     <link rel="icon" href="/blog/favicon.png">
@@ -85,95 +99,58 @@
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><i class="icon fa fa-archive"></i>归档: 2015/12</h1>
+              <h1 class="header"><a class="page-title-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/blog/categories/WEB/技巧/">技巧</a></h1>
             </div>
             <div class="main-body-content">
               
-  
-  
-    
-    
+  <article id="post-jsNotes" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2015" class="archive-year"><i class="icon fa fa-calendar-o"></i>2015</a>
-        </div>
-        <div class="archives">
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-<a href="/blog/2015/12/08/webpack/" class="thumbnail">
+        <header class="article-header">
+          
   
-    <span style="background-image:url(/blog/css/images/webpack.jpg
-)" alt="webpack怎么用" class="thumbnail-image"></span>
+    <h1 class="article-title" itemprop="name">
+      Javascript Notes
+    </h1>
   
-</a>
 
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/框架/">框架</a></p>
-        <p class="date"><time datetime="2015-12-08T06:45:25.000Z" itemprop="datePublished">2015-12-08</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/blog/2015/12/08/webpack/" class="title">webpack怎么用</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        
-前言最近几天在做关于webpack的项目.在使用过程中,遇到了遇到问题,不过一一解决了,我打算把这篇文章写出webpack的手册.等到自己下次还需要使用webpack的时候,能及时的参看这里的终结.
-什么是webpackwebpack是一个打包工具,可以把文件合并在一起.不过相比于其他的打包工具,webpack可以处理静态资源,比如图片,音频,css,less,sass这样的文件.在webpac
+        </header>
+      
+      <p class="article-byline">
+        <a href="/blog/2017/03/12/jsNotes/" class="article-date">
+  <time datetime="2017-03-12T02:24:55.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
       </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><img src="/blog/css/images/tips.jpg" alt=""></p>
+<p>这里主要记录个人忽略的知识点:</p>
+<ol>
+<li><p>node.js的require是引用传值的,也就是说,改变引用模块的值,也会改变引用的值, 多次引用同一个模块,只会拿到模块中的值, 不会重新运行模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">const</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>)</div><div class="line"></div><div class="line"><span class="comment">// &#123; name: 'b' &#125;</span></div><div class="line"><span class="built_in">console</span>.log(b);</div><div class="line"></div><div class="line">b.time = <span class="number">2</span>;</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="comment">// &#123; name: 'change b', time: 2 &#125;</span></div><div class="line">  <span class="built_in">console</span>.log(b);</div><div class="line">&#125;, <span class="number">1000</span>);</div><div class="line"></div><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="keyword">const</span> people = &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'b'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = people</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  people.name = <span class="string">'change b'</span>;</div><div class="line">&#125;, <span class="number">100</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>exports</code> 只是 <code>module.exports</code> 的一个引用, require拿到的是module.exports的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">exports = <span class="built_in">module</span>.exports</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports.name = <span class="string">'time'</span></div><div class="line"><span class="comment">// 等价于</span></div><div class="line">exports.name = <span class="string">'time'</span></div><div class="line"></div><div class="line"><span class="comment">// 不会改变module.exports的值,也就是module.exports还是&#123;&#125;</span></div><div class="line">exports = <span class="string">'time'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>require的实现原理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">require</span>(<span class="params">...</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> <span class="built_in">module</span> = &#123; &#123; <span class="attr">exports</span>: &#123;&#125; &#125; &#125;;</div><div class="line"></div><div class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">module, exports</span>) </span>&#123;</div><div class="line">    <span class="comment">// your module code execute here</span></div><div class="line">  &#125;)(<span class="built_in">module</span>, <span class="built_in">module</span>.exports);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="built_in">module</span>.exports;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>js执行分为2中任务队列,setTimeout,render等task队列和promise等trick队列,会先执行trick队列,后执行task队列</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>)</div><div class="line">&#125;, <span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">2</span>)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 运行结果</span></div><div class="line"><span class="comment">// 2</span></div><div class="line"><span class="comment">// 1</span></div></pre></td></tr></table></figure></li>
+</ol>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://marchen.com/blog/2017/03/12/jsNotes/" data-id="ciztfhqnd00007olli1ux0pwd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li></ul>
+
+      </footer>
     </div>
   </article>
-
-    
-  
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-<a href="/blog/2015/12/02/location/" class="thumbnail">
-  
-    <span style="background-image:url(/blog/css/images/location.jpg
-)" alt="导航高亮" class="thumbnail-image"></span>
-  
-</a>
-
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/blog/categories/WEB/">WEB</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/blog/categories/WEB/技巧/">技巧</a></p>
-        <p class="date"><time datetime="2015-12-02T02:31:05.000Z" itemprop="datePublished">2015-12-02</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/blog/2015/12/02/location/" class="title">导航高亮</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        
-非路由菜单高亮传统做法是用class来实现,首先初始化一个高亮按钮,然后通过点击取消掉全部class,然后在给点击的添加class即可.
-采用jq做法如下:123456789101112&lt;ul id="nav"&gt;  &lt;li class="item cur"&gt;1&lt;/li&gt;  &lt;li class="item"&gt;2&lt;/li&gt;  &lt;li 
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
   
   
-    </div></section>
-  
-  
-
 
             </div>
           </section>
@@ -187,6 +164,19 @@
       
     </ul>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2017/02/27/jsSummary/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">JS高级程序设计第三版注意点</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
   
   <div class="widgets-container">
     
